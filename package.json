@@ -1,0 +1,25 @@
+{
+  "name": "onesend",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/*",
+    "shared/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --filter=$workspace",
+    "build": "turbo run build --filter=$workspace"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.0",
+    "turborepo": "^0.0.1"
+  },
+  "packageManager": "npm@9.8.0",
+  "dependencies": {
+    "mongoose": "^8.8.2",
+    "next-intl": "^3.25.1"
+  }
+}
