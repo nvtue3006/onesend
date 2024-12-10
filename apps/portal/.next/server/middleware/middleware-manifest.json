@@ -1,0 +1,56 @@
+{
+  "sorted_middleware": [],
+  "middleware": {
+    "/": {
+      "files": [
+        "server/edge/chunks/[project]__1a330f._.js",
+        "server/edge/chunks/[root of the server]__21b1c5._.js",
+        "server/edge/chunks/edge-wrapper_5106b9.js"
+      ],
+      "name": "middleware",
+      "page": "/",
+      "matchers": [
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/((?!_next|favicon.ico|.*\\.svg).*){(\\\\.json)}?",
+          "originalSource": "/((?!_next|favicon.ico|.*\\.svg).*)"
+        }
+      ],
+      "wasm": [],
+      "assets": [
+        {
+          "name": "server/edge/chunks/[project]__1a330f._.js.map",
+          "filePath": "server/edge/chunks/[project]__1a330f._.js.map"
+        },
+        {
+          "name": "server/edge/chunks/[project]__1a330f._.js",
+          "filePath": "server/edge/chunks/[project]__1a330f._.js"
+        },
+        {
+          "name": "server/edge/chunks/[root of the server]__21b1c5._.js.map",
+          "filePath": "server/edge/chunks/[root of the server]__21b1c5._.js.map"
+        },
+        {
+          "name": "server/edge/chunks/[root of the server]__21b1c5._.js",
+          "filePath": "server/edge/chunks/[root of the server]__21b1c5._.js"
+        },
+        {
+          "name": "server/edge/chunks/edge-wrapper_5106b9.js.map",
+          "filePath": "server/edge/chunks/edge-wrapper_5106b9.js.map"
+        },
+        {
+          "name": "server/edge/chunks/edge-wrapper_5106b9.js",
+          "filePath": "server/edge/chunks/edge-wrapper_5106b9.js"
+        }
+      ],
+      "env": {
+        "__NEXT_BUILD_ID": "development",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "9TwSB+/yDfwsbTl/m04TWUQQam25+4cjbUvi3Tt1kME=",
+        "__NEXT_PREVIEW_MODE_ID": "b687428af45463674cd76051d32203ba",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "4e66fffb44facc2d2849cad031536d289901368181aed308fc016470308eb853",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "c1857f59eba6b4130a4ef3eb9f903bfe2cc13c06299d89ed72efdfa5ab97a74d"
+      }
+    }
+  },
+  "instrumentation": null,
+  "functions": {}
+}

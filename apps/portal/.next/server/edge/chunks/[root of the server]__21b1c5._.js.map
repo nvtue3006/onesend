@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 23, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/apps/portal/src/locale.ts"],"sourcesContent":["export const languages: { code: string; name: string }[] = [\n  { code: 'vi', name: 'Vietnamese' },\n  { code: 'en', name: 'English' }\n];\nexport const locales: string[] = languages.map((language) => language.code);\n"],"names":[],"mappings":";;;;AAAO,MAAM,YAA8C;IACzD;QAAE,MAAM;QAAM,MAAM;IAAa;IACjC;QAAE,MAAM;QAAM,MAAM;IAAU;CAC/B;AACM,MAAM,UAAoB,UAAU,GAAG,CAAC,CAAC,WAAa,SAAS,IAAI"}},
+    {"offset": {"line": 38, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 44, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/apps/portal/src/middleware.ts"],"sourcesContent":["import createMiddleware from \"next-intl/middleware\";\nimport {locales} from \"@/locale\";\n\nexport default createMiddleware({\n    defaultLocale: \"en\",\n    locales,\n});\n\nexport const config = {\n    matcher: [\n        '/((?!_next|favicon.ico|.*\\\\.svg).*)',\n    ],\n}"],"names":[],"mappings":";;;;AACA;AADA;;;uCAGe,CAAA,GAAA,kJAAA,CAAA,UAAgB,AAAD,EAAE;IAC5B,eAAe;IACf,SAAA,+HAAA,CAAA,UAAO;AACX;AAEO,MAAM,SAAS;IAClB,SAAS;QACL;KACH;AACL"}},
+    {"offset": {"line": 61, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

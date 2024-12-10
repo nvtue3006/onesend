@@ -14,6 +14,7 @@
     "node": ">=14.0.0"
   },
   "devDependencies": {
+    "prettier": "^3.4.2",
     "turbo": "^2.3.0",
     "turborepo": "^0.0.1"
   },
@@ -21,5 +22,6 @@
   "dependencies": {
     "mongoose": "^8.8.2",
     "next-intl": "^3.25.1"
+
   }
 }

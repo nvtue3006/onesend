@@ -1,101 +1,100 @@
-import Image from "next/image";
+'use client';
+
+import SendFile from '@/components/send-file';
+import Receive from '@/components/receive';
+import React, { useState } from 'react';
+import SendText from '@/components/send-text';
+import SafeData from '@/components/safe-data';
+import Donate from '@/components/donate';
+import Image from 'next/image';
+import gitHubImage from '../../../public/images/github.png';
+import ChangeLocaleOption from '@/components/change-locale-option';
+import { useDictionary } from '@/context/use-dictionary-context';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+	const { dictionary } = useDictionary();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+	const [option, setOption] = useState<'TEXT' | 'FILE'>('TEXT');
+	const [textState, setTextState] = useState<number>(1);
+	const [textValue, setTextValue] = useState('');
+	const [fileState, setFileState] = useState<number>(1);
+	const [isCopied, setIsCopied] = useState<boolean>(false);
+	const [isShowPopup, setIsShowPopup] = useState<boolean>(false);
+
+	const [isOnSafeData, setIsOnSafeData] = useState<boolean>(false);
+
+	const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+
+	const contentRender = () => {
+		if (option === 'TEXT') {
+			return (
+				<SendText
+					isCopied={isCopied}
+					isShowPopup={isShowPopup}
+					textValue={textValue}
+					textState={textState}
+					setTextState={setTextState}
+					setTextValue={setTextValue}
+					setIsCopied={setIsCopied}
+					setIsShowPopup={setIsShowPopup}
+					isOnSafeData={isOnSafeData}
+					setIsOpenModal={setIsOpenModal}
+				/>
+			);
+		}
+
+		return (
+			<SendFile
+				isCopied={isCopied}
+				isShowPopup={isShowPopup}
+				fileState={fileState}
+				setFileState={setFileState}
+				setIsCopied={setIsCopied}
+				setIsShowPopup={setIsShowPopup}
+				isOnSafeData={isOnSafeData}
+				setIsOpenModal={setIsOpenModal}
+			/>
+		);
+	};
+
+	return (
+		<div className="w-full h-full relative flex flex-col items-center justify-center m-auto">
+			<div className="absolute md:top-5 md:right-24 top-10 right-5">
+				<a href="https://github.com/nvtue3006/onesend" target="_blank" rel="noopener noreferrer">
+					<Image className="w-14 h-14 cursor-pointer" src={gitHubImage} alt="onsend github icon resource" />;
+				</a>
+			</div>
+
+			<div className="w-full h-auto max-w-[360px] flex flex-col justify-center items-center gap-5 mt-16 ">
+				<ChangeLocaleOption />
+
+				<div className="flex justify-between items-center md:w-[302px] rounded-[30px] bg-[#F0F0EF] p-[6px] shadow-custom">
+					<div className="w-[145px]">
+						<input onChange={() => setOption('TEXT')} type="radio" name="option" id="1" value="1" className="peer hidden" defaultChecked={true} />
+						<label
+							htmlFor="1"
+							className="block cursor-pointer select-none rounded-3xl p-[6px] text-center peer-checked:bg-white peer-checked:font-bold peer-checked:text-black"
+						>
+							{dictionary.text}
+						</label>
+					</div>
+
+					<div className="w-[145px]">
+						<input onChange={() => setOption('FILE')} type="radio" name="option" id="2" value="2" className="peer hidden" />
+						<label
+							htmlFor="2"
+							className="block cursor-pointer select-none rounded-3xl p-[6px] text-center peer-checked:bg-white peer-checked:font-bold peer-checked:text-black"
+						>
+							{dictionary.file}
+						</label>
+					</div>
+				</div>
+
+				{contentRender()}
+
+				<Receive setTextState={setTextState} setTextValue={setTextValue} setOption={(option: 'TEXT' | 'FILE') => setOption(option)} />
+			</div>
+			<Donate isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
+		</div>
+	);
 }

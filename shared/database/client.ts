@@ -1,38 +1,20 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+import { errorHandler } from '@/shared/decorations/error-handler';
+import { ErrorVars } from '@/shared/error/error-vars';
 
-const MONGODB_URI = process.env.MONGODB_URI as string;
-
-if (!MONGODB_URI) {
-	throw new Error("Please define the MONGODB_URI environment variable in .env.local");
-}
-
-class MongoClient {
-	private static instance: MongoClient;
-	private constructor() {
-		this.connect();
-	}
-
-	public static getInstance(): MongoClient {
-		if (!MongoClient.instance) {
-			MongoClient.instance = new MongoClient();
+export class MongoClientFC {
+	@errorHandler
+	public async initMongoClient(): Promise<void> {
+		if (!process.env.DATABASE_URL) {
+			throw new Error(ErrorVars.IN001_ENV_MISSING + `[DATABASE_UR]`);
 		}
-		return MongoClient.instance;
-	}
 
-	private async connect(): Promise<void> {
-		try {
-			if (mongoose.connection.readyState === 0) {
-				await mongoose.connect(MONGODB_URI, {
-					maxPoolSize: 20,
-				});
-				console.log("MongoDB connected with pool size 20.");
-			}
-		} catch (error) {
-			console.error("MongoDB connection error:", error);
-			throw new Error("Failed to connect to MongoDB");
+		if (mongoose.connection.readyState !== 0) {
+			return;
 		}
-	}
-	
-}
 
-export default MongoClient;
+		await mongoose.connect(process.env.DATABASE_URL, {
+			maxPoolSize: 20,
+		});
+	}
+}

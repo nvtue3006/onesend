@@ -1,4 +1,5 @@
-
 export type Dictionary = {
-    lang: string;
-}
+	lang: string;
+	text: string;
+	file: string;
+};
