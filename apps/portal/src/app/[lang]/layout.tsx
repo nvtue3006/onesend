@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import DictionaryProvider from "@/context/use-dictionary-context";
 import localFont from 'next/font/local';
 import './globals.css';
 
@@ -26,11 +27,19 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<head>
-				<meta name="google-adsense-account" content="ca-pub-4442572750494652" />
-				<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4442572750494652" crossOrigin="anonymous"></script>
-			</head>
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+		<head>
+			<meta name="google-adsense-account" content="ca-pub-4442572750494652" />
+			<script
+				async
+				src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4442572750494652"
+				crossOrigin="anonymous"
+			></script>
+		</head>
+		<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+		<DictionaryProvider language="en">
+			{children}
+		</DictionaryProvider>
+		</body>
 		</html>
 	);
 }

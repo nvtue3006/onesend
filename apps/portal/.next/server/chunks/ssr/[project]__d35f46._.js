@@ -130,8 +130,10 @@ __turbopack_esm__({
     "metadata": (()=>metadata)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js [app-rsc] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$portal$2f$src$2f$context$2f$use$2d$dictionary$2d$context$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/apps/portal/src/context/use-dictionary-context.tsx [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$portal$2f$src$2f$app$2f5b$lang$5d2f$geistsans_edf030a7$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/apps/portal/src/app/[lang]/geistsans_edf030a7.js [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$portal$2f$src$2f$app$2f5b$lang$5d2f$geistmono_141f3d3e$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/apps/portal/src/app/[lang]/geistmono_141f3d3e.js [app-rsc] (ecmascript)");
+;
 ;
 ;
 ;
@@ -151,7 +153,7 @@ function RootLayout({ children }) {
                         content: "ca-pub-4442572750494652"
                     }, void 0, false, {
                         fileName: "[project]/apps/portal/src/app/[lang]/layout.tsx",
-                        lineNumber: 30,
+                        lineNumber: 31,
                         columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("script", {
@@ -160,27 +162,37 @@ function RootLayout({ children }) {
                         crossOrigin: "anonymous"
                     }, void 0, false, {
                         fileName: "[project]/apps/portal/src/app/[lang]/layout.tsx",
-                        lineNumber: 31,
+                        lineNumber: 32,
                         columnNumber: 5
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/portal/src/app/[lang]/layout.tsx",
-                lineNumber: 29,
+                lineNumber: 30,
                 columnNumber: 4
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("body", {
                 className: `${__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$portal$2f$src$2f$app$2f5b$lang$5d2f$geistsans_edf030a7$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].variable} ${__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$portal$2f$src$2f$app$2f5b$lang$5d2f$geistmono_141f3d3e$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].variable} antialiased`,
-                children: children
-            }, void 0, false, {
+                children: [
+                    children,
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$portal$2f$src$2f$context$2f$use$2d$dictionary$2d$context$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
+                        language: "en",
+                        children: children
+                    }, void 0, false, {
+                        fileName: "[project]/apps/portal/src/app/[lang]/layout.tsx",
+                        lineNumber: 35,
+                        columnNumber: 4
+                    }, this)
+                ]
+            }, void 0, true, {
                 fileName: "[project]/apps/portal/src/app/[lang]/layout.tsx",
-                lineNumber: 33,
+                lineNumber: 34,
                 columnNumber: 4
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/apps/portal/src/app/[lang]/layout.tsx",
-        lineNumber: 28,
+        lineNumber: 29,
         columnNumber: 3
     }, this);
 }

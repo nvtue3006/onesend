@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
+import {useDictionary} from "@/context/use-dictionary-context";
 
 interface IDonateProps {
 	isOpenModal: boolean;
@@ -7,6 +8,7 @@ interface IDonateProps {
 }
 
 const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
+	const { dictionary } = useDictionary();
 	const [isCopyBank, setIsCopyBank] = useState(false);
 	const accountNumber = '595749999';
 
@@ -46,8 +48,14 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 					d="M45.6227 39.6092C45.6227 39.6092 45.0767 44.9616 48.8996 46.2726C52.7231 47.5836 55.4535 41.4661 55.4535 41.4661C55.4535 41.4661 59.4955 47.8016 63.1 46.4911C66.7049 45.1801 64.9569 37.4247 64.9569 37.4247L45.6227 39.6092Z"
 					fill="white"
 				/>
-				<path d="M55.5888 44.9212C57.0716 44.8506 56.9305 47.3927 55.3771 47.1804C53.8237 46.9687 54.1061 44.9918 55.5888 44.9212Z" fill="#633E36" />
-				<path d="M55.7561 50.2746C57.2389 50.204 57.0978 52.7461 55.5444 52.5338C53.991 52.3225 54.2739 50.3452 55.7561 50.2746Z" fill="#633E36" />
+				<path
+					d="M55.5888 44.9212C57.0716 44.8506 56.9305 47.3927 55.3771 47.1804C53.8237 46.9687 54.1061 44.9918 55.5888 44.9212Z"
+					fill="#633E36"
+				/>
+				<path
+					d="M55.7561 50.2746C57.2389 50.204 57.0978 52.7461 55.5444 52.5338C53.991 52.3225 54.2739 50.3452 55.7561 50.2746Z"
+					fill="#633E36"
+				/>
 				<path
 					d="M60.0197 0.00512595L51.4567 0.29525C25.815 3.45492 27.7638 27.6517 27.7638 27.6517C18.2111 41.6662 39.9702 51.2485 51.9985 50.6891L61.3442 50.2541C73.372 49.6941 87.5827 43.8232 82.1259 27.0216C82.1259 27.0216 84.8387 -0.430315 60.0197 0.00512595Z"
 					fill="#FFF3B8"
@@ -97,7 +105,10 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 					strokeLinejoin="round"
 					strokeLinecap="round"
 				/>
-				<path d="M45.2267 13.6818C54.3268 12.6547 55.5169 30.0578 46.2455 30.8207C36.9736 31.5837 37.6727 14.5345 45.2267 13.6818Z" fill="white" />
+				<path
+					d="M45.2267 13.6818C54.3268 12.6547 55.5169 30.0578 46.2455 30.8207C36.9736 31.5837 37.6727 14.5345 45.2267 13.6818Z"
+					fill="white"
+				/>
 				<path
 					d="M52.3279 19.3534C52.3279 19.3534 51.6174 12.7434 45.2436 13.6901C39.6394 14.5226 39.0166 22.3859 39.0166 22.3859"
 					stroke="#332B00"
@@ -116,7 +127,10 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 					d="M44.6621 21.4447C44.6621 21.4447 47.2431 21.7431 48.1368 20.4C49.03 19.0569 49.2288 15.7739 49.2288 15.7739C49.2288 15.7739 49.1297 20.3255 50.4199 20.8478C51.7106 21.3702 53.4976 21.5941 53.4976 21.5941C53.4976 21.5941 49.8246 22.1909 49.6258 22.9372C49.427 23.6834 49.2288 27.3398 49.2288 27.3398C49.2288 27.3398 48.633 23.236 47.938 22.7137C47.2436 22.1909 44.6621 21.4447 44.6621 21.4447Z"
 					fill="white"
 				/>
-				<path d="M63.7933 14.522C72.9702 12.9749 75.1438 30.5685 65.7774 31.8571C56.4115 33.1458 56.1754 15.8065 63.7933 14.522Z" fill="white" />
+				<path
+					d="M63.7933 14.522C72.9702 12.9749 75.1438 30.5685 65.7774 31.8571C56.4115 33.1458 56.1754 15.8065 63.7933 14.522Z"
+					fill="white"
+				/>
 				<path
 					d="M58.6719 19.6285C58.6719 19.6285 60.3067 13.1394 65.5429 14.0456C71.1258 15.012 71.7699 22.7419 71.7699 22.7419"
 					stroke="#332B00"
@@ -135,7 +149,10 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 					d="M59.3911 22.2634C59.3911 22.2634 61.9477 22.1103 62.2544 21.1912C62.5612 20.2721 62.9701 16.2136 62.9701 16.2136C62.9701 16.2136 63.5836 21.1912 64.1976 21.4974C64.811 21.8037 67.8793 22.2634 67.8793 22.2634C67.8793 22.2634 64.0953 22.4166 63.8908 22.9525C63.6864 23.4884 63.1751 28.1598 63.1751 28.1598C63.1751 28.1598 62.6639 23.565 62.0505 23.1822C61.4365 22.7994 59.3911 22.2634 59.3911 22.2634Z"
 					fill="white"
 				/>
-				<path d="M55.2005 25.6302C64.9266 25.6562 65.5551 37.602 54.2518 38.095C43.9108 38.546 44.0125 25.6001 55.2005 25.6302Z" fill="white" />
+				<path
+					d="M55.2005 25.6302C64.9266 25.6562 65.5551 37.602 54.2518 38.095C43.9108 38.546 44.0125 25.6001 55.2005 25.6302Z"
+					fill="white"
+				/>
 				<path
 					d="M50.6959 34.4602C50.6233 35.1515 52.4785 33.8661 53.6666 33.569C55.7462 34.4602 57.7871 35.6485 57.2315 34.4602C57.026 34.0206 56.3403 30.8954 54.2608 30.8954C51.2901 31.1925 50.7369 34.071 50.6959 34.4602Z"
 					fill="#332B00"
@@ -151,8 +168,14 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 					strokeMiterlimit="10"
 					strokeLinejoin="round"
 				/>
-				<path d="M34.3569 25.8452C34.3569 25.8452 45.0515 16.933 46.3215 32.8142L34.3569 25.8452Z" fill="#FFF3B8" />
-				<path d="M43.2473 26.571C47.7164 30.7594 40.8334 37.3195 36.2159 32.9397C31.5989 28.5599 38.2026 21.843 43.2473 26.571Z" fill="#ED7A85" />
+				<path
+					d="M34.3569 25.8452C34.3569 25.8452 45.0515 16.933 46.3215 32.8142L34.3569 25.8452Z"
+					fill="#FFF3B8"
+				/>
+				<path
+					d="M43.2473 26.571C47.7164 30.7594 40.8334 37.3195 36.2159 32.9397C31.5989 28.5599 38.2026 21.843 43.2473 26.571Z"
+					fill="#ED7A85"
+				/>
 				<path
 					d="M34.6538 25.8452C34.6538 25.8452 43.777 16.5211 47.3213 32.5556"
 					stroke="#332B00"
@@ -161,8 +184,14 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 					strokeLinejoin="round"
 					strokeLinecap="round"
 				/>
-				<path d="M61.623 34.0957C61.623 34.0957 65.4023 20.0786 75.6499 27.3305L61.623 34.0957Z" fill="#FFF3B8" />
-				<path d="M71.4618 26.1685C77.0452 27.547 74.7113 36.0357 68.9187 34.569C63.1262 33.1023 65.1591 24.6125 71.4618 26.1685Z" fill="#ED7A85" />
+				<path
+					d="M61.623 34.0957C61.623 34.0957 65.4023 20.0786 75.6499 27.3305L61.623 34.0957Z"
+					fill="#FFF3B8"
+				/>
+				<path
+					d="M71.4618 26.1685C77.0452 27.547 74.7113 36.0357 68.9187 34.569C63.1262 33.1023 65.1591 24.6125 71.4618 26.1685Z"
+					fill="#ED7A85"
+				/>
 				<path
 					d="M61.3906 33.0287C61.3906 33.0287 65.8333 19.8845 76.0809 27.1365"
 					stroke="#332B00"
@@ -289,7 +318,15 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 					stroke="#3D403A"
 					strokeWidth="5.27132"
 				/>
-				<mask id="path-49-outside-1_1474_4038" maskUnits="userSpaceOnUse" x="51.02" y="41.3684" width="18" height="26" fill="black">
+				<mask
+					id="path-49-outside-1_1474_4038"
+					maskUnits="userSpaceOnUse"
+					x="51.02"
+					y="41.3684"
+					width="18"
+					height="26"
+					fill="black"
+				>
 					<rect fill="white" x="51.02" y="41.3684" width="18" height="26" />
 					<path d="M62.4037 50.1239C62.8999 50.1239 63.3022 50.5262 63.3022 51.0224C63.3022 51.5186 62.8999 51.9209 62.4037 51.9209H57.9185C57.4223 51.9209 57.02 51.5186 57.02 51.0224C57.02 50.5262 57.4223 50.1239 57.9185 50.1239H62.4037ZM58.7047 48.4878C58.7047 47.8696 59.2059 47.3684 59.8242 47.3684C60.4424 47.3684 60.9436 47.8696 60.9436 48.4878V58.248C60.9436 58.6823 61.0085 59.0092 61.1382 59.2289C61.268 59.4435 61.4352 59.5908 61.6399 59.6707C61.8496 59.7455 62.0767 59.783 62.3213 59.783C62.501 59.783 62.6582 59.7705 62.793 59.7455C62.9678 59.7132 63.1379 59.8248 63.1759 59.9984L63.3891 60.9738C63.4597 61.2967 63.2813 61.6174 62.9577 61.6848C62.7181 61.7397 62.4186 61.7697 62.0592 61.7747C61.4702 61.7847 60.9211 61.6798 60.4119 61.4602C59.9028 61.2406 59.491 60.9011 59.1765 60.4419C58.862 59.9826 58.7047 59.4061 58.7047 58.7122V48.4878Z" />
 				</mask>
@@ -360,7 +397,15 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 				/>
 			</svg>
 
-			<svg xmlns="http://www.w3.org/2000/svg" width="29" height="52" viewBox="0 0 29 52" fill="none" className="md:hidden block  " onClick={openModal}>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="29"
+				height="52"
+				viewBox="0 0 29 52"
+				fill="none"
+				className="md:hidden block  "
+				onClick={openModal}
+			>
 				<path
 					d="M36.1473 33.9607C36.1473 33.9607 24.4638 33.5392 24.316 31.4322C24.1682 29.3251 23.4788 18.6195 23.4788 18.6195C26.6968 16.8775 31.781 15.7471 35.4837 15.825L36.1473 15.8391L36.1473 33.9607Z"
 					fill="#FFC25E"
@@ -411,7 +456,10 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 					strokeLinecap="round"
 					strokeLinejoin="round"
 				/>
-				<path d="M9.03708 31.6538C8.37245 25.7651 19.6338 24.9951 20.1275 30.9945C20.6212 36.9943 9.58886 36.5419 9.03708 31.6538Z" fill="white" />
+				<path
+					d="M9.03708 31.6538C8.37245 25.7651 19.6338 24.9951 20.1275 30.9945C20.6212 36.9943 9.58886 36.5419 9.03708 31.6538Z"
+					fill="white"
+				/>
 				<path
 					d="M12.7071 27.0587C12.7071 27.0587 8.42988 27.5185 9.04245 31.643C9.58114 35.2694 14.6694 35.6724 14.6694 35.6724"
 					stroke="#332B00"
@@ -430,7 +478,10 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 					d="M14.0604 32.0193C14.0604 32.0193 14.2535 30.3492 13.3844 29.7708C12.5153 29.1929 10.3909 29.0642 10.3909 29.0642C10.3909 29.0642 13.3362 29.1284 13.6742 28.2935C14.0122 27.4582 14.1571 26.302 14.1571 26.302C14.1571 26.302 14.5433 28.6787 15.0262 28.8073C15.5091 28.9359 17.8751 29.0642 17.8751 29.0642C17.8751 29.0642 15.2195 29.4498 14.8815 29.8995C14.5433 30.3488 14.0604 32.0193 14.0604 32.0193Z"
 					fill="white"
 				/>
-				<path d="M9.58085 19.6393C8.57971 13.701 19.9643 12.2945 20.7982 18.3554C21.6321 24.4159 10.4121 24.5687 9.58085 19.6393Z" fill="white" />
+				<path
+					d="M9.58085 19.6393C8.57971 13.701 19.9643 12.2945 20.7982 18.3554C21.6321 24.4159 10.4121 24.5687 9.58085 19.6393Z"
+					fill="white"
+				/>
 				<path
 					d="M12.8851 22.9534C12.8851 22.9534 8.68609 21.8955 9.27247 18.5072C9.8978 14.8946 14.8998 14.4778 14.8998 14.4778"
 					stroke="#332B00"
@@ -449,7 +500,10 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 					d="M14.5901 22.488C14.5901 22.488 14.491 20.8337 13.8963 20.6352C13.3015 20.4367 10.6753 20.1721 10.6753 20.1721C10.6753 20.1721 13.8963 19.7751 14.0944 19.3778C14.2926 18.9809 14.5901 16.9954 14.5901 16.9954C14.5901 16.9954 14.6892 19.444 15.036 19.5763C15.3828 19.7086 18.4056 20.0394 18.4056 20.0394C18.4056 20.0394 15.4323 20.3702 15.1846 20.7672C14.9369 21.1645 14.5901 22.488 14.5901 22.488Z"
 					fill="white"
 				/>
-				<path d="M16.7686 25.1996C16.7854 18.906 24.5154 18.4993 24.8344 25.8135C25.1263 32.5051 16.7491 32.4393 16.7686 25.1996Z" fill="white" />
+				<path
+					d="M16.7686 25.1996C16.7854 18.906 24.5154 18.4993 24.8344 25.8135C25.1263 32.5051 16.7491 32.4393 16.7686 25.1996Z"
+					fill="white"
+				/>
 				<path
 					d="M22.4828 28.1146C22.9301 28.1616 22.0983 26.9612 21.9061 26.1923C22.4828 24.8466 23.2517 23.526 22.4828 23.8855C22.1984 24.0185 20.176 24.4622 20.176 25.8078C20.3683 27.7301 22.2309 28.0881 22.4828 28.1146Z"
 					fill="#332B00"
@@ -465,8 +519,14 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 					strokeMiterlimit="10"
 					strokeLinejoin="round"
 				/>
-				<path d="M16.9079 38.6873C16.9079 38.6873 11.141 31.7669 21.4175 30.9451L16.9079 38.6873Z" fill="#FFF3B8" />
-				<path d="M17.3777 32.9344C20.0879 30.0424 24.333 34.4964 21.4988 37.4843C18.6647 40.4719 14.3182 36.1987 17.3777 32.9344Z" fill="#ED7A85" />
+				<path
+					d="M16.9079 38.6873C16.9079 38.6873 11.141 31.7669 21.4175 30.9451L16.9079 38.6873Z"
+					fill="#FFF3B8"
+				/>
+				<path
+					d="M17.3777 32.9344C20.0879 30.0424 24.333 34.4964 21.4988 37.4843C18.6647 40.4719 14.3182 36.1987 17.3777 32.9344Z"
+					fill="#ED7A85"
+				/>
 				<path
 					d="M16.9079 38.4951C16.9079 38.4951 10.8743 32.5916 21.2501 30.2981"
 					stroke="#332B00"
@@ -475,8 +535,14 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 					strokeLinecap="round"
 					strokeLinejoin="round"
 				/>
-				<path d="M22.2467 21.0437C22.2467 21.0437 13.1763 18.5982 17.869 11.967L22.2467 21.0437Z" fill="#FFF3B8" />
-				<path d="M17.1171 14.6769C18.0091 11.0639 23.502 12.5742 22.553 16.3225C21.6039 20.0708 16.1102 18.7553 17.1171 14.6769Z" fill="#ED7A85" />
+				<path
+					d="M22.2467 21.0437C22.2467 21.0437 13.1763 18.5982 17.869 11.967L22.2467 21.0437Z"
+					fill="#FFF3B8"
+				/>
+				<path
+					d="M17.1171 14.6769C18.0091 11.0639 23.502 12.5742 22.553 16.3225C21.6039 20.0708 16.1102 18.7553 17.1171 14.6769Z"
+					fill="#ED7A85"
+				/>
 				<path
 					d="M21.5561 21.1941C21.5561 21.1941 13.0506 18.3193 17.7433 11.6882"
 					stroke="#332B00"
@@ -578,22 +644,49 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 					<div className="md:w-[414px] w-[300px] fixed flex flex-col bg-white rounded-lg border-[#2f2f2f] text-black top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg">
 						<div className="flex w-full justify-center items-center px-[130px] pt-6 pb-0 gap-[10px] bg-[#FFF9DB] rounded-tl-[16px] rounded-tr-[16px] rounded-bl-none rounded-br-none ">
 							<div className="absolute flex md:w-[130px] md:px-[10px] px-[8px] md:py-2 py-1 items-center justify-center bg-[#3D403A] rounded-[55px] md:left-[24px] left-[14px] md:top-[22px] top-[13px] md:text-[12px] text-[10px] text-white font-normal leading-[14px]">
-								Donate us, please..
+								{dictionary.donateUS}
 							</div>
 							<div className="absolute md:left-20 md:top-[46px] left-[52px] top-8 ">
-								<svg xmlns="http://www.w3.org/2000/svg" width="36" height="22" viewBox="0 0 36 22" fill="none">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="36"
+									height="22"
+									viewBox="0 0 36 22"
+									fill="none"
+								>
 									<path
 										d="M34.7241 21.9287C1.81379 23.1938 -0.717678 7.30955 0.126174 0H11.9402C3.07956 21.9287 43.5844 19.3984 34.7241 21.9287Z"
 										fill="#3D403A"
 									/>
 								</svg>
 							</div>
-							<span className="absolute right-4 top-4 cursor-pointer" onClick={openModal}>
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-									<path d="M18 6L6 18" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-									<path d="M6 6L18 18" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-								</svg>
-							</span>
+							<span
+								className="absolute right-4 top-4 cursor-pointer"
+								onClick={openModal}
+							>
+                <svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+				>
+                  <path
+					  d="M18 6L6 18"
+					  stroke="black"
+					  strokeWidth="2"
+					  strokeLinecap="round"
+					  strokeLinejoin="round"
+				  />
+                  <path
+					  d="M6 6L18 18"
+					  stroke="black"
+					  strokeWidth="2"
+					  strokeLinecap="round"
+					  strokeLinejoin="round"
+				  />
+                </svg>
+              </span>
 							<div className="flex-shrink-0">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -603,7 +696,14 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 									fill="none"
 									className="md:block hidden md:w-[210px] md:h-[123px]"
 								>
-									<mask id="mask0_1403_5876" maskUnits="userSpaceOnUse" x="0" y="0" width="210" height="123">
+									<mask
+										id="mask0_1403_5876"
+										maskUnits="userSpaceOnUse"
+										x="0"
+										y="0"
+										width="210"
+										height="123"
+									>
 										<rect width="210" height="123" fill="#D9D9D9" />
 									</mask>
 									<g mask="url(#mask0_1403_5876)">
@@ -615,7 +715,10 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 											d="M81.2873 103.562C81.2873 103.562 79.8988 117.174 89.6207 120.507C99.3439 123.841 106.287 108.284 106.287 108.284C106.287 108.284 116.566 124.396 125.733 121.063C134.9 117.729 130.455 98.007 130.455 98.007L81.2873 103.562Z"
 											fill="white"
 										/>
-										<path d="M106.632 117.071C110.403 116.891 110.044 123.356 106.093 122.816C102.143 122.278 102.861 117.25 106.632 117.071Z" fill="#633E36" />
+										<path
+											d="M106.632 117.071C110.403 116.891 110.044 123.356 106.093 122.816C102.143 122.278 102.861 117.25 106.632 117.071Z"
+											fill="#633E36"
+										/>
 										<path
 											d="M117.9 2.84824L96.1237 3.58603C30.9162 11.6211 35.8722 73.1542 35.8722 73.1542C11.5794 108.794 66.9132 133.162 97.5016 131.739L121.268 130.633C151.855 129.209 187.993 114.279 174.116 71.5519C174.116 71.5519 181.015 1.7409 117.9 2.84824Z"
 											fill="#FFF3B8"
@@ -663,7 +766,10 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 											strokeMiterlimit="10"
 											strokeLinejoin="round"
 										/>
-										<path d="M80.2812 37.6284C103.423 35.0165 106.449 79.2729 82.872 81.2131C59.2932 83.1532 61.071 39.7969 80.2812 37.6284Z" fill="white" />
+										<path
+											d="M80.2812 37.6284C103.423 35.0165 106.449 79.2729 82.872 81.2131C59.2932 83.1532 61.071 39.7969 80.2812 37.6284Z"
+											fill="white"
+										/>
 										<path
 											d="M98.3402 52.0514C98.3402 52.0514 96.5334 35.242 80.3246 37.6494C66.0731 39.7664 64.4893 59.7631 64.4893 59.7631"
 											stroke="#332B00"
@@ -681,7 +787,10 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 											d="M78.8447 52.4156C78.8447 52.4156 85.4082 53.4253 87.681 48.8811C89.9524 44.3369 90.4579 33.2292 90.4579 33.2292C90.4579 33.2292 90.2058 48.629 93.4869 50.3963C96.7693 52.1635 101.313 52.9211 101.313 52.9211C101.313 52.9211 91.9731 54.9404 91.4676 57.4653C90.9621 59.9901 90.4579 72.3609 90.4579 72.3609C90.4579 72.3609 88.9428 58.4763 87.1755 56.709C85.4096 54.9404 78.8447 52.4156 78.8447 52.4156Z"
 											fill="white"
 										/>
-										<path d="M127.497 39.765C150.834 35.8306 156.361 80.5715 132.542 83.8486C108.725 87.1257 108.124 43.0315 127.497 39.765Z" fill="white" />
+										<path
+											d="M127.497 39.765C150.834 35.8306 156.361 80.5715 132.542 83.8486C108.725 87.1257 108.124 43.0315 127.497 39.765Z"
+											fill="white"
+										/>
 										<path
 											d="M114.473 52.7509C114.473 52.7509 118.63 36.249 131.946 38.5535C146.143 41.011 147.781 60.6685 147.781 60.6685"
 											stroke="#332B00"
@@ -699,7 +808,10 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 											d="M116.302 54.4218C116.302 54.4218 122.803 53.9017 123.583 50.7803C124.363 47.6589 125.403 33.876 125.403 33.876C125.403 33.876 126.963 50.7803 128.525 51.8204C130.085 52.8604 137.888 54.4218 137.888 54.4218C137.888 54.4218 128.265 54.9418 127.745 56.7618C127.225 58.5818 125.925 74.4462 125.925 74.4462C125.925 74.4462 124.625 58.8419 123.065 57.5418C121.503 56.2418 116.302 54.4218 116.302 54.4218Z"
 											fill="white"
 										/>
-										<path d="M105.645 68.0133C130.379 68.0793 131.977 98.4578 103.232 99.7116C76.9347 100.859 77.1934 67.9368 105.645 68.0133Z" fill="white" />
+										<path
+											d="M105.645 68.0133C130.379 68.0793 131.977 98.4578 103.232 99.7116C76.9347 100.859 77.1934 67.9368 105.645 68.0133Z"
+											fill="white"
+										/>
 										<path
 											d="M94.1898 90.4684C94.0051 92.2264 98.7229 88.9575 101.744 88.2021C107.033 90.4684 112.223 93.4903 110.81 90.4685C110.287 89.3506 108.544 81.403 103.255 81.403C95.7008 82.1584 94.2941 89.4785 94.1898 90.4684Z"
 											fill="#332B00"
@@ -715,8 +827,14 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 											strokeMiterlimit="10"
 											strokeLinejoin="round"
 										/>
-										<path d="M52.6396 68.5602C52.6396 68.5602 79.8362 45.8964 83.0657 86.2825L52.6396 68.5602Z" fill="#FFF3B8" />
-										<path d="M75.2489 70.4061C86.614 81.0571 69.1104 97.7398 57.3679 86.6017C45.6267 75.4637 62.4202 58.3825 75.2489 70.4061Z" fill="#ED7A85" />
+										<path
+											d="M52.6396 68.5602C52.6396 68.5602 79.8362 45.8964 83.0657 86.2825L52.6396 68.5602Z"
+											fill="#FFF3B8"
+										/>
+										<path
+											d="M75.2489 70.4061C86.614 81.0571 69.1104 97.7398 57.3679 86.6017C45.6267 75.4637 62.4202 58.3825 75.2489 70.4061Z"
+											fill="#ED7A85"
+										/>
 										<path
 											d="M53.3955 68.56C53.3955 68.56 76.596 44.8487 85.6092 85.6248"
 											stroke="#332B00"
@@ -724,8 +842,14 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 											strokeMiterlimit="10"
 											strokeLinejoin="round"
 										/>
-										<path d="M121.979 89.5413C121.979 89.5413 131.589 53.8954 157.649 72.3374L121.979 89.5413Z" fill="#FFF3B8" />
-										<path d="M146.999 69.3824C161.197 72.8878 155.262 94.475 140.531 90.7452C125.801 87.0153 130.971 65.4255 146.999 69.3824Z" fill="#ED7A85" />
+										<path
+											d="M121.979 89.5413C121.979 89.5413 131.589 53.8954 157.649 72.3374L121.979 89.5413Z"
+											fill="#FFF3B8"
+										/>
+										<path
+											d="M146.999 69.3824C161.197 72.8878 155.262 94.475 140.531 90.7452C125.801 87.0153 130.971 65.4255 146.999 69.3824Z"
+											fill="#ED7A85"
+										/>
 										<path
 											d="M121.387 86.8278C121.387 86.8278 132.684 53.4018 158.744 71.8438"
 											stroke="#332B00"
@@ -816,8 +940,22 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 									</g>
 								</svg>
 
-								<svg xmlns="http://www.w3.org/2000/svg" width="128" height="75" viewBox="0 0 128 75" fill="none" className="md:hidden block w-[128px] h-[75px]">
-									<mask id="mask0_1403_9311" maskUnits="userSpaceOnUse" x="0" y="0" width="128" height="75">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="128"
+									height="75"
+									viewBox="0 0 128 75"
+									fill="none"
+									className="md:hidden block w-[128px] h-[75px]"
+								>
+									<mask
+										id="mask0_1403_9311"
+										maskUnits="userSpaceOnUse"
+										x="0"
+										y="0"
+										width="128"
+										height="75"
+									>
 										<rect width="128" height="75" fill="#D9D9D9" />
 									</mask>
 									<g mask="url(#mask0_1403_9311)">
@@ -869,7 +1007,10 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 											strokeMiterlimit="10"
 											strokeLinejoin="round"
 										/>
-										<path d="M49.4623 25.231C64.0086 23.5892 65.9109 51.4076 51.0908 52.6271C36.2699 53.8466 37.3874 26.5941 49.4623 25.231Z" fill="white" />
+										<path
+											d="M49.4623 25.231C64.0086 23.5892 65.9109 51.4076 51.0908 52.6271C36.2699 53.8466 37.3874 26.5941 49.4623 25.231Z"
+											fill="white"
+										/>
 										<path
 											d="M60.8139 34.2967C60.8139 34.2967 59.6781 23.7308 49.4898 25.244C40.5317 26.5747 39.5361 39.1441 39.5361 39.1441"
 											stroke="#332B00"
@@ -887,7 +1028,10 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 											d="M48.5598 34.5256C48.5598 34.5256 52.6855 35.1602 54.114 32.3039C55.5418 29.4476 55.8595 22.4656 55.8595 22.4656C55.8595 22.4656 55.7011 32.1454 57.7635 33.2563C59.8267 34.3671 62.683 34.8433 62.683 34.8433C62.683 34.8433 56.8119 36.1126 56.4942 37.6996C56.1764 39.2867 55.8595 47.0626 55.8595 47.0626C55.8595 47.0626 54.9071 38.3351 53.7963 37.2243C52.6863 36.1126 48.5598 34.5256 48.5598 34.5256Z"
 											fill="white"
 										/>
-										<path d="M79.1407 26.5738C93.8098 24.1008 97.2842 52.2236 82.3123 54.2835C67.3412 56.3434 66.9638 28.6271 79.1407 26.5738Z" fill="white" />
+										<path
+											d="M79.1407 26.5738C93.8098 24.1008 97.2842 52.2236 82.3123 54.2835C67.3412 56.3434 66.9638 28.6271 79.1407 26.5738Z"
+											fill="white"
+										/>
 										<path
 											d="M70.9543 34.7364C70.9543 34.7364 73.5676 24.3638 81.9375 25.8123C90.8616 27.357 91.8911 39.7132 91.8911 39.7132"
 											stroke="#332B00"
@@ -905,7 +1049,10 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 											d="M72.1038 35.7868C72.1038 35.7868 76.1904 35.4599 76.6807 33.4979C77.171 31.5359 77.8247 22.8723 77.8247 22.8723C77.8247 22.8723 78.8053 33.4979 79.7867 34.1516C80.7673 34.8054 85.672 35.7868 85.672 35.7868C85.672 35.7868 79.6233 36.1137 79.2964 37.2577C78.9696 38.4017 78.1524 48.3736 78.1524 48.3736C78.1524 48.3736 77.3353 38.5651 76.3547 37.748C75.3732 36.9308 72.1038 35.7868 72.1038 35.7868Z"
 											fill="white"
 										/>
-										<path d="M65.4052 44.3299C80.9521 44.3714 81.9567 63.4664 63.8887 64.2546C47.3588 64.9755 47.5214 44.2818 65.4052 44.3299Z" fill="white" />
+										<path
+											d="M65.4052 44.3299C80.9521 44.3714 81.9567 63.4664 63.8887 64.2546C47.3588 64.9755 47.5214 44.2818 65.4052 44.3299Z"
+											fill="white"
+										/>
 										<path
 											d="M58.205 58.4446C58.0888 59.5497 61.0543 57.4949 62.9536 57.0201C66.2778 58.4446 69.54 60.3441 68.6519 58.4447C68.3234 57.742 67.2274 52.7463 63.9033 52.7463C59.1547 53.2212 58.2705 57.8224 58.205 58.4446Z"
 											fill="#332B00"
@@ -921,8 +1068,14 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 											strokeMiterlimit="10"
 											strokeLinejoin="round"
 										/>
-										<path d="M32.0879 44.6736C32.0879 44.6736 49.1829 30.4278 51.2128 55.8133L32.0879 44.6736Z" fill="#FFF3B8" />
-										<path d="M46.2992 45.834C53.4429 52.5289 42.4407 63.0151 35.0597 56.0141C27.6795 49.013 38.2354 38.2762 46.2992 45.834Z" fill="#ED7A85" />
+										<path
+											d="M32.0879 44.6736C32.0879 44.6736 49.1829 30.4278 51.2128 55.8133L32.0879 44.6736Z"
+											fill="#FFF3B8"
+										/>
+										<path
+											d="M46.2992 45.834C53.4429 52.5289 42.4407 63.0151 35.0597 56.0141C27.6795 49.013 38.2354 38.2762 46.2992 45.834Z"
+											fill="#ED7A85"
+										/>
 										<path
 											d="M32.5627 44.6736C32.5627 44.6736 47.1459 29.7693 52.8113 55.4"
 											stroke="#332B00"
@@ -930,7 +1083,10 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 											strokeMiterlimit="10"
 											strokeLinejoin="round"
 										/>
-										<path d="M75.6719 57.8619C75.6719 57.8619 81.7129 35.4559 98.0935 47.048L75.6719 57.8619Z" fill="#FFF3B8" />
+										<path
+											d="M75.6719 57.8619C75.6719 57.8619 81.7129 35.4559 98.0935 47.048L75.6719 57.8619Z"
+											fill="#FFF3B8"
+										/>
 										<path
 											d="M91.3989 45.1902C100.324 47.3937 96.5931 60.9627 87.3339 58.6183C78.0746 56.2738 81.3242 42.7031 91.3989 45.1902Z"
 											fill="#ED7A85"
@@ -1029,33 +1185,51 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 						<div className="flex flex-col items-center px-3 py-2 gap-3 ">
 							<div className="flex flex-col items-center gap-[6px]">
 								<p className="md:w-[246px] w-[210px] text-[#1B1D1B] text-center text-[16px] leading-6 font-semibold">
-									Support Our Mission to Make a Difference
+									{dictionary.donateSupport}
 								</p>
 								<div className="text-[#1B1D1B] text-center md:text-[16px] text-sm md:leading-6 font-normal">
-									By donating to <b>Onesend</b>, you’re helping us bring new technology to market.
-									<p className="font-semibold">Join us in making a lasting impact!</p>
+									{dictionary.donateOneSend}
+									<p className="font-semibold">
+										{dictionary.donateJoin}
+									</p>
 								</div>
 							</div>
 							<div className="w-[270px] h-0">
-								<svg xmlns="http://www.w3.org/2000/svg" width="270" height="2" viewBox="0 0 270 2" fill="none">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="270"
+									height="2"
+									viewBox="0 0 270 2"
+									fill="none"
+								>
 									<path d="M0 1L270 1" stroke="#B7BAB5" strokeDasharray="4 4" />
 								</svg>
 							</div>
 							<div className="flex md:w-full w-[280px] flex-col px-3 py-5 items-center gap-[8px]">
 								<div className="text-[#1B1D1B] text-center text-sm uppercase font-medium">
-									<div className="md:block hidden">Scan QR to donate 👇</div>
-									<div className="md:hidden block">👇 donate by:</div>
+									<div className="md:block hidden">{dictionary.scanQr} 👇</div>
+									<div className="md:hidden block">👇 {dictionary.donateBy}</div>
 								</div>
 
 								<div className="flex flex-col justify-center items-start gap-[10px]">
 									<div className="md:block hidden justify-center items-center gap-5">
-										<img src="/images/QR.png" alt="" width={150} height={150} className="md:block hidden" />
+										<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 1000 1300"><defs><clipPath id="clip-path-dot-color"><circle cx="257.5" cy="380.5" r="5.5" transform="rotate(0,257.5,380.5)"/><circle cx="257.5" cy="402.5" r="5.5" transform="rotate(0,257.5,402.5)"/><path d="M 252 419v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,257.5,424.5)"/><rect x="252" y="430" width="11" height="11" transform="rotate(0,257.5,435.5)"/><rect x="252" y="441" width="11" height="11" transform="rotate(0,257.5,446.5)"/><rect x="252" y="452" width="11" height="11" transform="rotate(0,257.5,457.5)"/><rect x="252" y="463" width="11" height="11" transform="rotate(0,257.5,468.5)"/><path d="M 252 474v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,257.5,479.5)"/><circle cx="257.5" cy="501.5" r="5.5" transform="rotate(0,257.5,501.5)"/><circle cx="257.5" cy="545.5" r="5.5" transform="rotate(0,257.5,545.5)"/><path d="M 252 562v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,257.5,567.5)"/><rect x="252" y="573" width="11" height="11" transform="rotate(0,257.5,578.5)"/><rect x="252" y="584" width="11" height="11" transform="rotate(0,257.5,589.5)"/><rect x="252" y="595" width="11" height="11" transform="rotate(0,257.5,600.5)"/><rect x="252" y="606" width="11" height="11" transform="rotate(0,257.5,611.5)"/><rect x="252" y="617" width="11" height="11" transform="rotate(0,257.5,622.5)"/><path d="M 252 628v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,257.5,633.5)"/><circle cx="257.5" cy="688.5" r="5.5" transform="rotate(0,257.5,688.5)"/><circle cx="268.5" cy="391.5" r="5.5" transform="rotate(0,268.5,391.5)"/><path d="M 263 419v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,268.5,424.5)"/><path d="M 263 430v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,268.5,435.5)"/><path d="M 263 452v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,268.5,457.5)"/><path d="M 263 485v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,268.5,490.5)"/><path d="M 263 507v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,268.5,512.5)"/><path d="M 263 518v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,268.5,523.5)"/><path d="M 263 551v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,268.5,556.5)"/><path d="M 263 562v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,268.5,567.5)"/><path d="M 263 584v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,268.5,589.5)"/><rect x="263" y="617" width="11" height="11" transform="rotate(0,268.5,622.5)"/><path d="M 263 672v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,268.5,677.5)"/><circle cx="279.5" cy="380.5" r="5.5" transform="rotate(0,279.5,380.5)"/><path d="M 274 441v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,279.5,446.5)"/><path d="M 274 485v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,279.5,490.5)"/><rect x="274" y="496" width="11" height="11" transform="rotate(0,279.5,501.5)"/><rect x="274" y="507" width="11" height="11" transform="rotate(0,279.5,512.5)"/><rect x="274" y="518" width="11" height="11" transform="rotate(0,279.5,523.5)"/><path d="M 274 540v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,279.5,545.5)"/><path d="M 274 551v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,279.5,556.5)"/><path d="M 274 573v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,279.5,578.5)"/><circle cx="279.5" cy="600.5" r="5.5" transform="rotate(0,279.5,600.5)"/><rect x="274" y="617" width="11" height="11" transform="rotate(0,279.5,622.5)"/><circle cx="279.5" cy="655.5" r="5.5" transform="rotate(0,279.5,655.5)"/><rect x="274" y="672" width="11" height="11" transform="rotate(0,279.5,677.5)"/><path d="M 285 430v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,290.5,435.5)"/><path d="M 285 441v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,290.5,446.5)"/><path d="M 285 474v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,290.5,479.5)"/><rect x="285" y="496" width="11" height="11" transform="rotate(0,290.5,501.5)"/><rect x="285" y="507" width="11" height="11" transform="rotate(0,290.5,512.5)"/><rect x="285" y="518" width="11" height="11" transform="rotate(0,290.5,523.5)"/><rect x="285" y="540" width="11" height="11" transform="rotate(0,290.5,545.5)"/><path d="M 285 573v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,290.5,578.5)"/><path d="M 285 584v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,290.5,589.5)"/><rect x="285" y="617" width="11" height="11" transform="rotate(0,290.5,622.5)"/><circle cx="290.5" cy="644.5" r="5.5" transform="rotate(0,290.5,644.5)"/><rect x="285" y="672" width="11" height="11" transform="rotate(0,290.5,677.5)"/><path d="M 285 683v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,290.5,688.5)"/><path d="M 296 375v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,301.5,380.5)"/><path d="M 296 386v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,301.5,391.5)"/><path d="M 296 408v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,301.5,413.5)"/><rect x="296" y="474" width="11" height="11" transform="rotate(0,301.5,479.5)"/><path d="M 296 496v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,301.5,501.5)"/><rect x="296" y="507" width="11" height="11" transform="rotate(0,301.5,512.5)"/><rect x="296" y="518" width="11" height="11" transform="rotate(0,301.5,523.5)"/><rect x="296" y="529" width="11" height="11" transform="rotate(0,301.5,534.5)"/><rect x="296" y="540" width="11" height="11" transform="rotate(0,301.5,545.5)"/><rect x="296" y="551" width="11" height="11" transform="rotate(0,301.5,556.5)"/><path d="M 296 562v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,301.5,567.5)"/><circle cx="301.5" cy="600.5" r="5.5" transform="rotate(0,301.5,600.5)"/><rect x="296" y="617" width="11" height="11" transform="rotate(0,301.5,622.5)"/><path d="M 296 628v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,301.5,633.5)"/><path d="M 296 650v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,301.5,655.5)"/><rect x="296" y="661" width="11" height="11" transform="rotate(0,301.5,666.5)"/><rect x="296" y="672" width="11" height="11" transform="rotate(0,301.5,677.5)"/><path d="M 296 683v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,301.5,688.5)"/><path d="M 307 386v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,312.5,391.5)"/><path d="M 307 408v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,312.5,413.5)"/><rect x="307" y="419" width="11" height="11" transform="rotate(0,312.5,424.5)"/><path d="M 307 430v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,312.5,435.5)"/><circle cx="312.5" cy="457.5" r="5.5" transform="rotate(0,312.5,457.5)"/><path d="M 307 474v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,312.5,479.5)"/><path d="M 307 485v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,312.5,490.5)"/><rect x="307" y="507" width="11" height="11" transform="rotate(0,312.5,512.5)"/><rect x="307" y="551" width="11" height="11" transform="rotate(0,312.5,556.5)"/><path d="M 307 573v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,312.5,578.5)"/><path d="M 307 584v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,312.5,589.5)"/><rect x="307" y="617" width="11" height="11" transform="rotate(0,312.5,622.5)"/><rect x="307" y="628" width="11" height="11" transform="rotate(0,312.5,633.5)"/><path d="M 307 639v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,312.5,644.5)"/><path d="M 318 375v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,323.5,380.5)"/><path d="M 318 397v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,323.5,402.5)"/><rect x="318" y="419" width="11" height="11" transform="rotate(0,323.5,424.5)"/><circle cx="323.5" cy="446.5" r="5.5" transform="rotate(0,323.5,446.5)"/><path d="M 318 463v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,323.5,468.5)"/><path d="M 318 485v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,323.5,490.5)"/><rect x="318" y="507" width="11" height="11" transform="rotate(0,323.5,512.5)"/><circle cx="323.5" cy="534.5" r="5.5" transform="rotate(0,323.5,534.5)"/><rect x="318" y="551" width="11" height="11" transform="rotate(0,323.5,556.5)"/><path d="M 318 573v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,323.5,578.5)"/><path d="M 318 595v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,323.5,600.5)"/><path d="M 318 617v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,323.5,622.5)"/><rect x="318" y="639" width="11" height="11" transform="rotate(0,323.5,644.5)"/><circle cx="323.5" cy="666.5" r="5.5" transform="rotate(0,323.5,666.5)"/><path d="M 318 683v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,323.5,688.5)"/><path d="M 329 375v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,334.5,380.5)"/><rect x="329" y="386" width="11" height="11" transform="rotate(0,334.5,391.5)"/><rect x="329" y="397" width="11" height="11" transform="rotate(0,334.5,402.5)"/><path d="M 329 419v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,334.5,424.5)"/><path d="M 329 430v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,334.5,435.5)"/><path d="M 329 452v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,334.5,457.5)"/><path d="M 329 463v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,334.5,468.5)"/><rect x="329" y="507" width="11" height="11" transform="rotate(0,334.5,512.5)"/><rect x="329" y="551" width="11" height="11" transform="rotate(0,334.5,556.5)"/><path d="M 329 584v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,334.5,589.5)"/><rect x="329" y="595" width="11" height="11" transform="rotate(0,334.5,600.5)"/><path d="M 329 606v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,334.5,611.5)"/><path d="M 329 628v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,334.5,633.5)"/><path d="M 329 639v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,334.5,644.5)"/><path d="M 329 683v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,334.5,688.5)"/><path d="M 340 342v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,345.5,347.5)"/><path d="M 340 353v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,345.5,358.5)"/><path d="M 340 386v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,345.5,391.5)"/><rect x="340" y="397" width="11" height="11" transform="rotate(0,345.5,402.5)"/><path d="M 340 408v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,345.5,413.5)"/><path d="M 340 452v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,345.5,457.5)"/><path d="M 340 474v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,345.5,479.5)"/><path d="M 340 496v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,345.5,501.5)"/><rect x="340" y="507" width="11" height="11" transform="rotate(0,345.5,512.5)"/><rect x="340" y="518" width="11" height="11" transform="rotate(0,345.5,523.5)"/><rect x="340" y="529" width="11" height="11" transform="rotate(0,345.5,534.5)"/><rect x="340" y="540" width="11" height="11" transform="rotate(0,345.5,545.5)"/><rect x="340" y="551" width="11" height="11" transform="rotate(0,345.5,556.5)"/><path d="M 340 562v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,345.5,567.5)"/><rect x="340" y="595" width="11" height="11" transform="rotate(0,345.5,600.5)"/><rect x="340" y="606" width="11" height="11" transform="rotate(0,345.5,611.5)"/><path d="M 340 650v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,345.5,655.5)"/><path d="M 340 661v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,345.5,666.5)"/><path d="M 340 705v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,345.5,710.5)"/><path d="M 340 727v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,345.5,732.5)"/><path d="M 340 749v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,345.5,754.5)"/><path d="M 340 771v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,345.5,776.5)"/><path d="M 351 298v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,356.5,303.5)"/><rect x="351" y="309" width="11" height="11" transform="rotate(0,356.5,314.5)"/><path d="M 351 320v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,356.5,325.5)"/><rect x="351" y="342" width="11" height="11" transform="rotate(0,356.5,347.5)"/><rect x="351" y="474" width="11" height="11" transform="rotate(0,356.5,479.5)"/><path d="M 351 485v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,356.5,490.5)"/><rect x="351" y="507" width="11" height="11" transform="rotate(0,356.5,512.5)"/><path d="M 351 529v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,356.5,534.5)"/><path d="M 351 540v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,356.5,545.5)"/><path d="M 351 562v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,356.5,567.5)"/><path d="M 351 573v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,356.5,578.5)"/><path d="M 351 595v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,356.5,600.5)"/><rect x="351" y="606" width="11" height="11" transform="rotate(0,356.5,611.5)"/><path d="M 351 617v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,356.5,622.5)"/><circle cx="356.5" cy="644.5" r="5.5" transform="rotate(0,356.5,644.5)"/><path d="M 351 661v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,356.5,666.5)"/><path d="M 351 672v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,356.5,677.5)"/><path d="M 351 694v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,356.5,699.5)"/><rect x="351" y="705" width="11" height="11" transform="rotate(0,356.5,710.5)"/><rect x="351" y="716" width="11" height="11" transform="rotate(0,356.5,721.5)"/><path d="M 351 727v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,356.5,732.5)"/><rect x="351" y="749" width="11" height="11" transform="rotate(0,356.5,754.5)"/><rect x="351" y="760" width="11" height="11" transform="rotate(0,356.5,765.5)"/><rect x="351" y="771" width="11" height="11" transform="rotate(0,356.5,776.5)"/><rect x="362" y="320" width="11" height="11" transform="rotate(0,367.5,325.5)"/><rect x="362" y="342" width="11" height="11" transform="rotate(0,367.5,347.5)"/><rect x="362" y="353" width="11" height="11" transform="rotate(0,367.5,358.5)"/><rect x="362" y="364" width="11" height="11" transform="rotate(0,367.5,369.5)"/><path d="M 362 375v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,367.5,380.5)"/><circle cx="367.5" cy="402.5" r="5.5" transform="rotate(0,367.5,402.5)"/><path d="M 362 441v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,367.5,446.5)"/><rect x="362" y="452" width="11" height="11" transform="rotate(0,367.5,457.5)"/><rect x="362" y="463" width="11" height="11" transform="rotate(0,367.5,468.5)"/><rect x="362" y="474" width="11" height="11" transform="rotate(0,367.5,479.5)"/><path d="M 362 496v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,367.5,501.5)"/><path d="M 362 507v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,367.5,512.5)"/><rect x="362" y="573" width="11" height="11" transform="rotate(0,367.5,578.5)"/><path d="M 362 584v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,367.5,589.5)"/><path d="M 362 617v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,367.5,622.5)"/><path d="M 362 628v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,367.5,633.5)"/><circle cx="367.5" cy="655.5" r="5.5" transform="rotate(0,367.5,655.5)"/><rect x="362" y="672" width="11" height="11" transform="rotate(0,367.5,677.5)"/><path d="M 362 694v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,367.5,699.5)"/><path d="M 362 716v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,367.5,721.5)"/><path d="M 362 749v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,367.5,754.5)"/><path d="M 362 771v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,367.5,776.5)"/><path d="M 373 309v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,378.5,314.5)"/><rect x="373" y="320" width="11" height="11" transform="rotate(0,378.5,325.5)"/><rect x="373" y="331" width="11" height="11" transform="rotate(0,378.5,336.5)"/><rect x="373" y="342" width="11" height="11" transform="rotate(0,378.5,347.5)"/><path d="M 373 364v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,378.5,369.5)"/><path d="M 373 386v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,378.5,391.5)"/><path d="M 373 419v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,378.5,424.5)"/><rect x="373" y="430" width="11" height="11" transform="rotate(0,378.5,435.5)"/><rect x="373" y="441" width="11" height="11" transform="rotate(0,378.5,446.5)"/><path d="M 373 474v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,378.5,479.5)"/><rect x="373" y="485" width="11" height="11" transform="rotate(0,378.5,490.5)"/><path d="M 373 496v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,378.5,501.5)"/><path d="M 373 518v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,378.5,523.5)"/><path d="M 373 551v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,378.5,556.5)"/><path d="M 373 573v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,378.5,578.5)"/><path d="M 373 595v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,378.5,600.5)"/><path d="M 373 639v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,378.5,644.5)"/><rect x="373" y="672" width="11" height="11" transform="rotate(0,378.5,677.5)"/><path d="M 373 760v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,378.5,765.5)"/><path d="M 384 287v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,389.5,292.5)"/><rect x="384" y="298" width="11" height="11" transform="rotate(0,389.5,303.5)"/><rect x="384" y="309" width="11" height="11" transform="rotate(0,389.5,314.5)"/><rect x="384" y="331" width="11" height="11" transform="rotate(0,389.5,336.5)"/><rect x="384" y="342" width="11" height="11" transform="rotate(0,389.5,347.5)"/><path d="M 384 353v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,389.5,358.5)"/><path d="M 384 386v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,389.5,391.5)"/><path d="M 384 397v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,389.5,402.5)"/><path d="M 384 419v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,389.5,424.5)"/><rect x="384" y="430" width="11" height="11" transform="rotate(0,389.5,435.5)"/><path d="M 384 441v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,389.5,446.5)"/><path d="M 384 463v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,389.5,468.5)"/><rect x="384" y="518" width="11" height="11" transform="rotate(0,389.5,523.5)"/><rect x="384" y="529" width="11" height="11" transform="rotate(0,389.5,534.5)"/><rect x="384" y="540" width="11" height="11" transform="rotate(0,389.5,545.5)"/><rect x="384" y="551" width="11" height="11" transform="rotate(0,389.5,556.5)"/><path d="M 384 562v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,389.5,567.5)"/><path d="M 384 584v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,389.5,589.5)"/><rect x="384" y="595" width="11" height="11" transform="rotate(0,389.5,600.5)"/><rect x="384" y="606" width="11" height="11" transform="rotate(0,389.5,611.5)"/><rect x="384" y="617" width="11" height="11" transform="rotate(0,389.5,622.5)"/><rect x="384" y="628" width="11" height="11" transform="rotate(0,389.5,633.5)"/><path d="M 384 639v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,389.5,644.5)"/><path d="M 384 661v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,389.5,666.5)"/><rect x="384" y="672" width="11" height="11" transform="rotate(0,389.5,677.5)"/><rect x="384" y="683" width="11" height="11" transform="rotate(0,389.5,688.5)"/><rect x="384" y="694" width="11" height="11" transform="rotate(0,389.5,699.5)"/><rect x="384" y="705" width="11" height="11" transform="rotate(0,389.5,710.5)"/><rect x="384" y="716" width="11" height="11" transform="rotate(0,389.5,721.5)"/><rect x="384" y="727" width="11" height="11" transform="rotate(0,389.5,732.5)"/><rect x="384" y="738" width="11" height="11" transform="rotate(0,389.5,743.5)"/><rect x="384" y="749" width="11" height="11" transform="rotate(0,389.5,754.5)"/><rect x="384" y="760" width="11" height="11" transform="rotate(0,389.5,765.5)"/><path d="M 384 771v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,389.5,776.5)"/><path d="M 395 287v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,400.5,292.5)"/><rect x="395" y="298" width="11" height="11" transform="rotate(0,400.5,303.5)"/><path d="M 395 309v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,400.5,314.5)"/><path d="M 395 331v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,400.5,336.5)"/><path d="M 395 342v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,400.5,347.5)"/><path d="M 395 364v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,400.5,369.5)"/><path d="M 395 375v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,400.5,380.5)"/><rect x="395" y="397" width="11" height="11" transform="rotate(0,400.5,402.5)"/><rect x="395" y="430" width="11" height="11" transform="rotate(0,400.5,435.5)"/><path d="M 395 452v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,400.5,457.5)"/><path d="M 395 463v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,400.5,468.5)"/><path d="M 395 496v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,400.5,501.5)"/><rect x="395" y="518" width="11" height="11" transform="rotate(0,400.5,523.5)"/><rect x="395" y="529" width="11" height="11" transform="rotate(0,400.5,534.5)"/><rect x="395" y="584" width="11" height="11" transform="rotate(0,400.5,589.5)"/><path d="M 395 661v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,400.5,666.5)"/><rect x="395" y="683" width="11" height="11" transform="rotate(0,400.5,688.5)"/><path d="M 395 694v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,400.5,699.5)"/><path d="M 395 727v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,400.5,732.5)"/><rect x="395" y="749" width="11" height="11" transform="rotate(0,400.5,754.5)"/><circle cx="411.5" cy="358.5" r="5.5" transform="rotate(0,411.5,358.5)"/><rect x="406" y="375" width="11" height="11" transform="rotate(0,411.5,380.5)"/><path d="M 406 397v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,411.5,402.5)"/><path d="M 406 419v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,411.5,424.5)"/><rect x="406" y="430" width="11" height="11" transform="rotate(0,411.5,435.5)"/><path d="M 406 496v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,411.5,501.5)"/><path d="M 406 518v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,411.5,523.5)"/><path d="M 406 529v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,411.5,534.5)"/><path d="M 406 551v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,411.5,556.5)"/><path d="M 406 562v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,411.5,567.5)"/><path d="M 406 584v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,411.5,589.5)"/><path d="M 406 595v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,411.5,600.5)"/><circle cx="411.5" cy="622.5" r="5.5" transform="rotate(0,411.5,622.5)"/><path d="M 406 650v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,411.5,655.5)"/><rect x="406" y="683" width="11" height="11" transform="rotate(0,411.5,688.5)"/><rect x="406" y="749" width="11" height="11" transform="rotate(0,411.5,754.5)"/><path d="M 406 771v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,411.5,776.5)"/><circle cx="422.5" cy="303.5" r="5.5" transform="rotate(0,422.5,303.5)"/><path d="M 417 320v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,422.5,325.5)"/><circle cx="422.5" cy="347.5" r="5.5" transform="rotate(0,422.5,347.5)"/><path d="M 417 375v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,422.5,380.5)"/><path d="M 417 408v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,422.5,413.5)"/><rect x="417" y="419" width="11" height="11" transform="rotate(0,422.5,424.5)"/><rect x="417" y="430" width="11" height="11" transform="rotate(0,422.5,435.5)"/><path d="M 417 628v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,422.5,633.5)"/><rect x="417" y="639" width="11" height="11" transform="rotate(0,422.5,644.5)"/><rect x="417" y="650" width="11" height="11" transform="rotate(0,422.5,655.5)"/><rect x="417" y="661" width="11" height="11" transform="rotate(0,422.5,666.5)"/><rect x="417" y="672" width="11" height="11" transform="rotate(0,422.5,677.5)"/><path d="M 417 683v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,422.5,688.5)"/><circle cx="422.5" cy="710.5" r="5.5" transform="rotate(0,422.5,710.5)"/><circle cx="422.5" cy="732.5" r="5.5" transform="rotate(0,422.5,732.5)"/><rect x="417" y="749" width="11" height="11" transform="rotate(0,422.5,754.5)"/><rect x="417" y="760" width="11" height="11" transform="rotate(0,422.5,765.5)"/><path d="M 417 771v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,422.5,776.5)"/><circle cx="433.5" cy="292.5" r="5.5" transform="rotate(0,433.5,292.5)"/><path d="M 428 309v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,433.5,314.5)"/><rect x="428" y="320" width="11" height="11" transform="rotate(0,433.5,325.5)"/><path d="M 428 331v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,433.5,336.5)"/><path d="M 428 353v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,433.5,358.5)"/><path d="M 428 364v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,433.5,369.5)"/><circle cx="433.5" cy="391.5" r="5.5" transform="rotate(0,433.5,391.5)"/><path d="M 428 419v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,433.5,424.5)"/><path d="M 428 430v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,433.5,435.5)"/><rect x="428" y="628" width="11" height="11" transform="rotate(0,433.5,633.5)"/><rect x="428" y="639" width="11" height="11" transform="rotate(0,433.5,644.5)"/><path d="M 428 650v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,433.5,655.5)"/><circle cx="433.5" cy="721.5" r="5.5" transform="rotate(0,433.5,721.5)"/><path d="M 428 749v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,433.5,754.5)"/><path d="M 439 331v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,444.5,336.5)"/><path d="M 439 628v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,444.5,633.5)"/><path d="M 439 661v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,444.5,666.5)"/><path d="M 439 672v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,444.5,677.5)"/><circle cx="444.5" cy="765.5" r="5.5" transform="rotate(0,444.5,765.5)"/><path d="M 450 298v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,455.5,303.5)"/><path d="M 450 342v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,455.5,347.5)"/><rect x="450" y="353" width="11" height="11" transform="rotate(0,455.5,358.5)"/><path d="M 450 364v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,455.5,369.5)"/><path d="M 450 386v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,455.5,391.5)"/><path d="M 450 397v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,455.5,402.5)"/><path d="M 450 430v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,455.5,435.5)"/><path d="M 450 441v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,455.5,446.5)"/><path d="M 450 617v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,455.5,622.5)"/><path d="M 450 639v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,455.5,644.5)"/><rect x="450" y="650" width="11" height="11" transform="rotate(0,455.5,655.5)"/><rect x="450" y="661" width="11" height="11" transform="rotate(0,455.5,666.5)"/><rect x="450" y="672" width="11" height="11" transform="rotate(0,455.5,677.5)"/><rect x="450" y="683" width="11" height="11" transform="rotate(0,455.5,688.5)"/><rect x="450" y="694" width="11" height="11" transform="rotate(0,455.5,699.5)"/><path d="M 450 705v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,455.5,710.5)"/><path d="M 450 727v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,455.5,732.5)"/><path d="M 450 738v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,455.5,743.5)"/><circle cx="455.5" cy="776.5" r="5.5" transform="rotate(0,455.5,776.5)"/><path d="M 461 298v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,466.5,303.5)"/><path d="M 461 320v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,466.5,325.5)"/><path d="M 461 331v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,466.5,336.5)"/><path d="M 461 375v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,466.5,380.5)"/><path d="M 461 386v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,466.5,391.5)"/><path d="M 461 408v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,466.5,413.5)"/><path d="M 461 441v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,466.5,446.5)"/><rect x="461" y="617" width="11" height="11" transform="rotate(0,466.5,622.5)"/><rect x="461" y="628" width="11" height="11" transform="rotate(0,466.5,633.5)"/><path d="M 461 639v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,466.5,644.5)"/><rect x="461" y="661" width="11" height="11" transform="rotate(0,466.5,666.5)"/><rect x="461" y="683" width="11" height="11" transform="rotate(0,466.5,688.5)"/><rect x="461" y="705" width="11" height="11" transform="rotate(0,466.5,710.5)"/><rect x="461" y="738" width="11" height="11" transform="rotate(0,466.5,743.5)"/><path d="M 461 749v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,466.5,754.5)"/><path d="M 472 309v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,477.5,314.5)"/><rect x="472" y="320" width="11" height="11" transform="rotate(0,477.5,325.5)"/><rect x="472" y="331" width="11" height="11" transform="rotate(0,477.5,336.5)"/><rect x="472" y="342" width="11" height="11" transform="rotate(0,477.5,347.5)"/><rect x="472" y="353" width="11" height="11" transform="rotate(0,477.5,358.5)"/><rect x="472" y="364" width="11" height="11" transform="rotate(0,477.5,369.5)"/><rect x="472" y="375" width="11" height="11" transform="rotate(0,477.5,380.5)"/><path d="M 472 408v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,477.5,413.5)"/><rect x="472" y="617" width="11" height="11" transform="rotate(0,477.5,622.5)"/><path d="M 472 628v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,477.5,633.5)"/><path d="M 472 650v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,477.5,655.5)"/><rect x="472" y="661" width="11" height="11" transform="rotate(0,477.5,666.5)"/><rect x="472" y="683" width="11" height="11" transform="rotate(0,477.5,688.5)"/><rect x="472" y="694" width="11" height="11" transform="rotate(0,477.5,699.5)"/><rect x="472" y="705" width="11" height="11" transform="rotate(0,477.5,710.5)"/><rect x="472" y="716" width="11" height="11" transform="rotate(0,477.5,721.5)"/><rect x="472" y="727" width="11" height="11" transform="rotate(0,477.5,732.5)"/><rect x="472" y="738" width="11" height="11" transform="rotate(0,477.5,743.5)"/><path d="M 483 309v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,488.5,314.5)"/><rect x="483" y="331" width="11" height="11" transform="rotate(0,488.5,336.5)"/><rect x="483" y="375" width="11" height="11" transform="rotate(0,488.5,380.5)"/><rect x="483" y="386" width="11" height="11" transform="rotate(0,488.5,391.5)"/><path d="M 483 397v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,488.5,402.5)"/><path d="M 483 419v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,488.5,424.5)"/><path d="M 483 430v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,488.5,435.5)"/><rect x="483" y="617" width="11" height="11" transform="rotate(0,488.5,622.5)"/><path d="M 483 639v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,488.5,644.5)"/><rect x="483" y="650" width="11" height="11" transform="rotate(0,488.5,655.5)"/><rect x="483" y="661" width="11" height="11" transform="rotate(0,488.5,666.5)"/><rect x="483" y="683" width="11" height="11" transform="rotate(0,488.5,688.5)"/><rect x="483" y="727" width="11" height="11" transform="rotate(0,488.5,732.5)"/><path d="M 483 738v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,488.5,743.5)"/><circle cx="488.5" cy="776.5" r="5.5" transform="rotate(0,488.5,776.5)"/><path d="M 494 298v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,499.5,303.5)"/><rect x="494" y="331" width="11" height="11" transform="rotate(0,499.5,336.5)"/><circle cx="499.5" cy="358.5" r="5.5" transform="rotate(0,499.5,358.5)"/><rect x="494" y="375" width="11" height="11" transform="rotate(0,499.5,380.5)"/><rect x="494" y="397" width="11" height="11" transform="rotate(0,499.5,402.5)"/><path d="M 494 430v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,499.5,435.5)"/><path d="M 494 617v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,499.5,622.5)"/><rect x="494" y="628" width="11" height="11" transform="rotate(0,499.5,633.5)"/><rect x="494" y="639" width="11" height="11" transform="rotate(0,499.5,644.5)"/><rect x="494" y="650" width="11" height="11" transform="rotate(0,499.5,655.5)"/><path d="M 494 661v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,499.5,666.5)"/><rect x="494" y="683" width="11" height="11" transform="rotate(0,499.5,688.5)"/><circle cx="499.5" cy="710.5" r="5.5" transform="rotate(0,499.5,710.5)"/><rect x="494" y="727" width="11" height="11" transform="rotate(0,499.5,732.5)"/><circle cx="499.5" cy="754.5" r="5.5" transform="rotate(0,499.5,754.5)"/><rect x="505" y="298" width="11" height="11" transform="rotate(0,510.5,303.5)"/><path d="M 505 309v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,510.5,314.5)"/><rect x="505" y="331" width="11" height="11" transform="rotate(0,510.5,336.5)"/><rect x="505" y="375" width="11" height="11" transform="rotate(0,510.5,380.5)"/><rect x="505" y="397" width="11" height="11" transform="rotate(0,510.5,402.5)"/><rect x="505" y="628" width="11" height="11" transform="rotate(0,510.5,633.5)"/><rect x="505" y="683" width="11" height="11" transform="rotate(0,510.5,688.5)"/><rect x="505" y="727" width="11" height="11" transform="rotate(0,510.5,732.5)"/><path d="M 505 738v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,510.5,743.5)"/><circle cx="510.5" cy="765.5" r="5.5" transform="rotate(0,510.5,765.5)"/><path d="M 516 298v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,521.5,303.5)"/><path d="M 516 320v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,521.5,325.5)"/><rect x="516" y="331" width="11" height="11" transform="rotate(0,521.5,336.5)"/><rect x="516" y="342" width="11" height="11" transform="rotate(0,521.5,347.5)"/><rect x="516" y="353" width="11" height="11" transform="rotate(0,521.5,358.5)"/><rect x="516" y="364" width="11" height="11" transform="rotate(0,521.5,369.5)"/><rect x="516" y="375" width="11" height="11" transform="rotate(0,521.5,380.5)"/><rect x="516" y="386" width="11" height="11" transform="rotate(0,521.5,391.5)"/><rect x="516" y="397" width="11" height="11" transform="rotate(0,521.5,402.5)"/><circle cx="521.5" cy="424.5" r="5.5" transform="rotate(0,521.5,424.5)"/><rect x="516" y="628" width="11" height="11" transform="rotate(0,521.5,633.5)"/><path d="M 516 661v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,521.5,666.5)"/><rect x="516" y="672" width="11" height="11" transform="rotate(0,521.5,677.5)"/><rect x="516" y="683" width="11" height="11" transform="rotate(0,521.5,688.5)"/><rect x="516" y="694" width="11" height="11" transform="rotate(0,521.5,699.5)"/><rect x="516" y="705" width="11" height="11" transform="rotate(0,521.5,710.5)"/><rect x="516" y="716" width="11" height="11" transform="rotate(0,521.5,721.5)"/><rect x="516" y="727" width="11" height="11" transform="rotate(0,521.5,732.5)"/><rect x="516" y="738" width="11" height="11" transform="rotate(0,521.5,743.5)"/><path d="M 527 287v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,532.5,292.5)"/><path d="M 527 309v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,532.5,314.5)"/><rect x="527" y="342" width="11" height="11" transform="rotate(0,532.5,347.5)"/><path d="M 527 364v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,532.5,369.5)"/><rect x="527" y="375" width="11" height="11" transform="rotate(0,532.5,380.5)"/><rect x="527" y="397" width="11" height="11" transform="rotate(0,532.5,402.5)"/><path d="M 527 408v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,532.5,413.5)"/><path d="M 527 617v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,532.5,622.5)"/><path d="M 527 628v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,532.5,633.5)"/><rect x="527" y="683" width="11" height="11" transform="rotate(0,532.5,688.5)"/><rect x="527" y="694" width="11" height="11" transform="rotate(0,532.5,699.5)"/><rect x="527" y="705" width="11" height="11" transform="rotate(0,532.5,710.5)"/><rect x="527" y="738" width="11" height="11" transform="rotate(0,532.5,743.5)"/><path d="M 527 749v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,532.5,754.5)"/><rect x="538" y="287" width="11" height="11" transform="rotate(0,543.5,292.5)"/><rect x="538" y="309" width="11" height="11" transform="rotate(0,543.5,314.5)"/><path d="M 538 331v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,543.5,336.5)"/><rect x="538" y="342" width="11" height="11" transform="rotate(0,543.5,347.5)"/><path d="M 538 353v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,543.5,358.5)"/><rect x="538" y="375" width="11" height="11" transform="rotate(0,543.5,380.5)"/><rect x="538" y="397" width="11" height="11" transform="rotate(0,543.5,402.5)"/><path d="M 538 408v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,543.5,413.5)"/><circle cx="543.5" cy="435.5" r="5.5" transform="rotate(0,543.5,435.5)"/><path d="M 538 650v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,543.5,655.5)"/><path d="M 538 672v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,543.5,677.5)"/><rect x="538" y="683" width="11" height="11" transform="rotate(0,543.5,688.5)"/><rect x="538" y="705" width="11" height="11" transform="rotate(0,543.5,710.5)"/><path d="M 538 716v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,543.5,721.5)"/><path d="M 538 738v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,543.5,743.5)"/><rect x="538" y="749" width="11" height="11" transform="rotate(0,543.5,754.5)"/><rect x="549" y="287" width="11" height="11" transform="rotate(0,554.5,292.5)"/><rect x="549" y="309" width="11" height="11" transform="rotate(0,554.5,314.5)"/><path d="M 549 342v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,554.5,347.5)"/><path d="M 549 364v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,554.5,369.5)"/><rect x="549" y="375" width="11" height="11" transform="rotate(0,554.5,380.5)"/><rect x="549" y="397" width="11" height="11" transform="rotate(0,554.5,402.5)"/><circle cx="554.5" cy="424.5" r="5.5" transform="rotate(0,554.5,424.5)"/><path d="M 549 441v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,554.5,446.5)"/><path d="M 549 639v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,554.5,644.5)"/><rect x="549" y="650" width="11" height="11" transform="rotate(0,554.5,655.5)"/><rect x="549" y="661" width="11" height="11" transform="rotate(0,554.5,666.5)"/><rect x="549" y="672" width="11" height="11" transform="rotate(0,554.5,677.5)"/><rect x="549" y="683" width="11" height="11" transform="rotate(0,554.5,688.5)"/><rect x="549" y="705" width="11" height="11" transform="rotate(0,554.5,710.5)"/><circle cx="554.5" cy="732.5" r="5.5" transform="rotate(0,554.5,732.5)"/><rect x="549" y="749" width="11" height="11" transform="rotate(0,554.5,754.5)"/><path d="M 560 287v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,565.5,292.5)"/><rect x="560" y="298" width="11" height="11" transform="rotate(0,565.5,303.5)"/><rect x="560" y="309" width="11" height="11" transform="rotate(0,565.5,314.5)"/><path d="M 560 320v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,565.5,325.5)"/><circle cx="565.5" cy="358.5" r="5.5" transform="rotate(0,565.5,358.5)"/><rect x="560" y="375" width="11" height="11" transform="rotate(0,565.5,380.5)"/><rect x="560" y="386" width="11" height="11" transform="rotate(0,565.5,391.5)"/><path d="M 560 397v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,565.5,402.5)"/><path d="M 560 430v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,565.5,435.5)"/><rect x="560" y="441" width="11" height="11" transform="rotate(0,565.5,446.5)"/><path d="M 560 628v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,565.5,633.5)"/><path d="M 560 639v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,565.5,644.5)"/><rect x="560" y="683" width="11" height="11" transform="rotate(0,565.5,688.5)"/><rect x="560" y="705" width="11" height="11" transform="rotate(0,565.5,710.5)"/><path d="M 560 716v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,565.5,721.5)"/><rect x="560" y="749" width="11" height="11" transform="rotate(0,565.5,754.5)"/><rect x="560" y="760" width="11" height="11" transform="rotate(0,565.5,765.5)"/><path d="M 560 771v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,565.5,776.5)"/><path d="M 571 298v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,576.5,303.5)"/><rect x="571" y="320" width="11" height="11" transform="rotate(0,576.5,325.5)"/><circle cx="576.5" cy="347.5" r="5.5" transform="rotate(0,576.5,347.5)"/><path d="M 571 375v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,576.5,380.5)"/><path d="M 571 419v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,576.5,424.5)"/><path d="M 571 441v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,576.5,446.5)"/><rect x="571" y="628" width="11" height="11" transform="rotate(0,576.5,633.5)"/><path d="M 571 650v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,576.5,655.5)"/><rect x="571" y="661" width="11" height="11" transform="rotate(0,576.5,666.5)"/><rect x="571" y="672" width="11" height="11" transform="rotate(0,576.5,677.5)"/><path d="M 571 683v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,576.5,688.5)"/><rect x="571" y="705" width="11" height="11" transform="rotate(0,576.5,710.5)"/><path d="M 571 749v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,576.5,754.5)"/><rect x="571" y="760" width="11" height="11" transform="rotate(0,576.5,765.5)"/><path d="M 571 771v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,576.5,776.5)"/><path d="M 582 320v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,587.5,325.5)"/><circle cx="587.5" cy="358.5" r="5.5" transform="rotate(0,587.5,358.5)"/><path d="M 582 408v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,587.5,413.5)"/><rect x="582" y="419" width="11" height="11" transform="rotate(0,587.5,424.5)"/><path d="M 582 452v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,587.5,457.5)"/><path d="M 582 463v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,587.5,468.5)"/><path d="M 582 485v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,587.5,490.5)"/><path d="M 582 496v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,587.5,501.5)"/><path d="M 582 518v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,587.5,523.5)"/><path d="M 582 540v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,587.5,545.5)"/><rect x="582" y="551" width="11" height="11" transform="rotate(0,587.5,556.5)"/><rect x="582" y="562" width="11" height="11" transform="rotate(0,587.5,567.5)"/><path d="M 582 573v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,587.5,578.5)"/><circle cx="587.5" cy="600.5" r="5.5" transform="rotate(0,587.5,600.5)"/><rect x="582" y="628" width="11" height="11" transform="rotate(0,587.5,633.5)"/><rect x="582" y="639" width="11" height="11" transform="rotate(0,587.5,644.5)"/><rect x="582" y="650" width="11" height="11" transform="rotate(0,587.5,655.5)"/><rect x="582" y="661" width="11" height="11" transform="rotate(0,587.5,666.5)"/><path d="M 582 672v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,587.5,677.5)"/><rect x="582" y="705" width="11" height="11" transform="rotate(0,587.5,710.5)"/><rect x="582" y="716" width="11" height="11" transform="rotate(0,587.5,721.5)"/><path d="M 582 727v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,587.5,732.5)"/><path d="M 593 287v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,598.5,292.5)"/><rect x="593" y="298" width="11" height="11" transform="rotate(0,598.5,303.5)"/><path d="M 593 309v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,598.5,314.5)"/><circle cx="598.5" cy="369.5" r="5.5" transform="rotate(0,598.5,369.5)"/><path d="M 593 386v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,598.5,391.5)"/><path d="M 593 397v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,598.5,402.5)"/><path d="M 593 419v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,598.5,424.5)"/><path d="M 593 452v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,598.5,457.5)"/><rect x="593" y="485" width="11" height="11" transform="rotate(0,598.5,490.5)"/><path d="M 593 507v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,598.5,512.5)"/><rect x="593" y="518" width="11" height="11" transform="rotate(0,598.5,523.5)"/><rect x="593" y="529" width="11" height="11" transform="rotate(0,598.5,534.5)"/><rect x="593" y="540" width="11" height="11" transform="rotate(0,598.5,545.5)"/><rect x="593" y="551" width="11" height="11" transform="rotate(0,598.5,556.5)"/><rect x="593" y="562" width="11" height="11" transform="rotate(0,598.5,567.5)"/><path d="M 593 573v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,598.5,578.5)"/><rect x="593" y="628" width="11" height="11" transform="rotate(0,598.5,633.5)"/><rect x="593" y="650" width="11" height="11" transform="rotate(0,598.5,655.5)"/><path d="M 593 683v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,598.5,688.5)"/><rect x="593" y="705" width="11" height="11" transform="rotate(0,598.5,710.5)"/><rect x="593" y="716" width="11" height="11" transform="rotate(0,598.5,721.5)"/><rect x="604" y="287" width="11" height="11" transform="rotate(0,609.5,292.5)"/><path d="M 604 309v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,609.5,314.5)"/><path d="M 604 342v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,609.5,347.5)"/><path d="M 604 353v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,609.5,358.5)"/><path d="M 604 375v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,609.5,380.5)"/><rect x="604" y="397" width="11" height="11" transform="rotate(0,609.5,402.5)"/><path d="M 604 408v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,609.5,413.5)"/><circle cx="609.5" cy="446.5" r="5.5" transform="rotate(0,609.5,446.5)"/><rect x="604" y="485" width="11" height="11" transform="rotate(0,609.5,490.5)"/><rect x="604" y="496" width="11" height="11" transform="rotate(0,609.5,501.5)"/><rect x="604" y="507" width="11" height="11" transform="rotate(0,609.5,512.5)"/><rect x="604" y="518" width="11" height="11" transform="rotate(0,609.5,523.5)"/><path d="M 604 540v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,609.5,545.5)"/><rect x="604" y="551" width="11" height="11" transform="rotate(0,609.5,556.5)"/><path d="M 604 562v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,609.5,567.5)"/><path d="M 604 584v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,609.5,589.5)"/><rect x="604" y="595" width="11" height="11" transform="rotate(0,609.5,600.5)"/><path d="M 604 606v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,609.5,611.5)"/><rect x="604" y="628" width="11" height="11" transform="rotate(0,609.5,633.5)"/><rect x="604" y="639" width="11" height="11" transform="rotate(0,609.5,644.5)"/><path d="M 604 650v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,609.5,655.5)"/><path d="M 604 672v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,609.5,677.5)"/><rect x="604" y="683" width="11" height="11" transform="rotate(0,609.5,688.5)"/><rect x="604" y="705" width="11" height="11" transform="rotate(0,609.5,710.5)"/><path d="M 604 716v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,609.5,721.5)"/><path d="M 604 760v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,609.5,765.5)"/><path d="M 604 771v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,609.5,776.5)"/><path d="M 615 287v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,620.5,292.5)"/><circle cx="620.5" cy="325.5" r="5.5" transform="rotate(0,620.5,325.5)"/><path d="M 615 364v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,620.5,369.5)"/><rect x="615" y="375" width="11" height="11" transform="rotate(0,620.5,380.5)"/><rect x="615" y="386" width="11" height="11" transform="rotate(0,620.5,391.5)"/><path d="M 615 397v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,620.5,402.5)"/><path d="M 615 419v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,620.5,424.5)"/><path d="M 615 463v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,620.5,468.5)"/><path d="M 615 485v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,620.5,490.5)"/><rect x="615" y="507" width="11" height="11" transform="rotate(0,620.5,512.5)"/><rect x="615" y="518" width="11" height="11" transform="rotate(0,620.5,523.5)"/><path d="M 615 529v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,620.5,534.5)"/><path d="M 615 551v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,620.5,556.5)"/><path d="M 615 573v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,620.5,578.5)"/><rect x="615" y="595" width="11" height="11" transform="rotate(0,620.5,600.5)"/><path d="M 615 606v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,620.5,611.5)"/><path d="M 615 628v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,620.5,633.5)"/><path d="M 615 639v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,620.5,644.5)"/><circle cx="620.5" cy="666.5" r="5.5" transform="rotate(0,620.5,666.5)"/><rect x="615" y="683" width="11" height="11" transform="rotate(0,620.5,688.5)"/><rect x="615" y="705" width="11" height="11" transform="rotate(0,620.5,710.5)"/><circle cx="620.5" cy="732.5" r="5.5" transform="rotate(0,620.5,732.5)"/><path d="M 615 749v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,620.5,754.5)"/><path d="M 615 771v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,620.5,776.5)"/><path d="M 626 331v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,631.5,336.5)"/><circle cx="631.5" cy="358.5" r="5.5" transform="rotate(0,631.5,358.5)"/><path d="M 626 375v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,631.5,380.5)"/><rect x="626" y="386" width="11" height="11" transform="rotate(0,631.5,391.5)"/><path d="M 626 408v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,631.5,413.5)"/><rect x="626" y="419" width="11" height="11" transform="rotate(0,631.5,424.5)"/><path d="M 626 430v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,631.5,435.5)"/><path d="M 626 452v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,631.5,457.5)"/><rect x="626" y="463" width="11" height="11" transform="rotate(0,631.5,468.5)"/><path d="M 626 474v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,631.5,479.5)"/><path d="M 626 496v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,631.5,501.5)"/><rect x="626" y="507" width="11" height="11" transform="rotate(0,631.5,512.5)"/><path d="M 626 562v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,631.5,567.5)"/><rect x="626" y="573" width="11" height="11" transform="rotate(0,631.5,578.5)"/><rect x="626" y="595" width="11" height="11" transform="rotate(0,631.5,600.5)"/><path d="M 626 617v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,631.5,622.5)"/><path d="M 626 650v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,631.5,655.5)"/><path d="M 626 672v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,631.5,677.5)"/><rect x="626" y="683" width="11" height="11" transform="rotate(0,631.5,688.5)"/><rect x="626" y="705" width="11" height="11" transform="rotate(0,631.5,710.5)"/><path d="M 626 716v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,631.5,721.5)"/><rect x="626" y="749" width="11" height="11" transform="rotate(0,631.5,754.5)"/><path d="M 637 298v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,642.5,303.5)"/><rect x="637" y="309" width="11" height="11" transform="rotate(0,642.5,314.5)"/><rect x="637" y="320" width="11" height="11" transform="rotate(0,642.5,325.5)"/><rect x="637" y="331" width="11" height="11" transform="rotate(0,642.5,336.5)"/><circle cx="642.5" cy="369.5" r="5.5" transform="rotate(0,642.5,369.5)"/><path d="M 637 386v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,642.5,391.5)"/><path d="M 637 397v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,642.5,402.5)"/><path d="M 637 441v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,642.5,446.5)"/><rect x="637" y="463" width="11" height="11" transform="rotate(0,642.5,468.5)"/><rect x="637" y="474" width="11" height="11" transform="rotate(0,642.5,479.5)"/><rect x="637" y="507" width="11" height="11" transform="rotate(0,642.5,512.5)"/><path d="M 637 518v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,642.5,523.5)"/><path d="M 637 540v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,642.5,545.5)"/><path d="M 637 551v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,642.5,556.5)"/><path d="M 637 573v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,642.5,578.5)"/><path d="M 637 595v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,642.5,600.5)"/><rect x="637" y="606" width="11" height="11" transform="rotate(0,642.5,611.5)"/><path d="M 637 617v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,642.5,622.5)"/><rect x="637" y="650" width="11" height="11" transform="rotate(0,642.5,655.5)"/><path d="M 637 661v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,642.5,666.5)"/><rect x="637" y="683" width="11" height="11" transform="rotate(0,642.5,688.5)"/><rect x="637" y="705" width="11" height="11" transform="rotate(0,642.5,710.5)"/><rect x="637" y="716" width="11" height="11" transform="rotate(0,642.5,721.5)"/><rect x="637" y="749" width="11" height="11" transform="rotate(0,642.5,754.5)"/><circle cx="653.5" cy="292.5" r="5.5" transform="rotate(0,653.5,292.5)"/><path d="M 648 320v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,653.5,325.5)"/><path d="M 648 331v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,653.5,336.5)"/><circle cx="653.5" cy="358.5" r="5.5" transform="rotate(0,653.5,358.5)"/><path d="M 648 375v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,653.5,380.5)"/><path d="M 648 397v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,653.5,402.5)"/><rect x="648" y="408" width="11" height="11" transform="rotate(0,653.5,413.5)"/><rect x="648" y="419" width="11" height="11" transform="rotate(0,653.5,424.5)"/><rect x="648" y="430" width="11" height="11" transform="rotate(0,653.5,435.5)"/><rect x="648" y="441" width="11" height="11" transform="rotate(0,653.5,446.5)"/><rect x="648" y="452" width="11" height="11" transform="rotate(0,653.5,457.5)"/><rect x="648" y="463" width="11" height="11" transform="rotate(0,653.5,468.5)"/><path d="M 648 474v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,653.5,479.5)"/><rect x="648" y="507" width="11" height="11" transform="rotate(0,653.5,512.5)"/><rect x="648" y="518" width="11" height="11" transform="rotate(0,653.5,523.5)"/><rect x="648" y="529" width="11" height="11" transform="rotate(0,653.5,534.5)"/><rect x="648" y="540" width="11" height="11" transform="rotate(0,653.5,545.5)"/><rect x="648" y="551" width="11" height="11" transform="rotate(0,653.5,556.5)"/><path d="M 648 606v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,653.5,611.5)"/><circle cx="653.5" cy="633.5" r="5.5" transform="rotate(0,653.5,633.5)"/><path d="M 648 650v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,653.5,655.5)"/><path d="M 648 672v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,653.5,677.5)"/><rect x="648" y="683" width="11" height="11" transform="rotate(0,653.5,688.5)"/><rect x="648" y="694" width="11" height="11" transform="rotate(0,653.5,699.5)"/><rect x="648" y="705" width="11" height="11" transform="rotate(0,653.5,710.5)"/><rect x="648" y="716" width="11" height="11" transform="rotate(0,653.5,721.5)"/><rect x="648" y="727" width="11" height="11" transform="rotate(0,653.5,732.5)"/><rect x="648" y="738" width="11" height="11" transform="rotate(0,653.5,743.5)"/><rect x="648" y="749" width="11" height="11" transform="rotate(0,653.5,754.5)"/><rect x="648" y="760" width="11" height="11" transform="rotate(0,653.5,765.5)"/><path d="M 648 771v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,653.5,776.5)"/><path d="M 659 375v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,664.5,380.5)"/><path d="M 659 408v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,664.5,413.5)"/><rect x="659" y="419" width="11" height="11" transform="rotate(0,664.5,424.5)"/><rect x="659" y="430" width="11" height="11" transform="rotate(0,664.5,435.5)"/><rect x="659" y="452" width="11" height="11" transform="rotate(0,664.5,457.5)"/><path d="M 659 463v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,664.5,468.5)"/><path d="M 659 485v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,664.5,490.5)"/><rect x="659" y="496" width="11" height="11" transform="rotate(0,664.5,501.5)"/><rect x="659" y="507" width="11" height="11" transform="rotate(0,664.5,512.5)"/><rect x="659" y="551" width="11" height="11" transform="rotate(0,664.5,556.5)"/><circle cx="664.5" cy="578.5" r="5.5" transform="rotate(0,664.5,578.5)"/><path d="M 659 595v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,664.5,600.5)"/><circle cx="664.5" cy="622.5" r="5.5" transform="rotate(0,664.5,622.5)"/><path d="M 659 661v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,664.5,666.5)"/><rect x="659" y="683" width="11" height="11" transform="rotate(0,664.5,688.5)"/><rect x="659" y="727" width="11" height="11" transform="rotate(0,664.5,732.5)"/><rect x="659" y="749" width="11" height="11" transform="rotate(0,664.5,754.5)"/><circle cx="675.5" cy="391.5" r="5.5" transform="rotate(0,675.5,391.5)"/><path d="M 670 419v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,675.5,424.5)"/><path d="M 670 430v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,675.5,435.5)"/><path d="M 670 452v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,675.5,457.5)"/><path d="M 670 474v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,675.5,479.5)"/><rect x="670" y="485" width="11" height="11" transform="rotate(0,675.5,490.5)"/><rect x="670" y="496" width="11" height="11" transform="rotate(0,675.5,501.5)"/><rect x="670" y="507" width="11" height="11" transform="rotate(0,675.5,512.5)"/><circle cx="675.5" cy="534.5" r="5.5" transform="rotate(0,675.5,534.5)"/><rect x="670" y="551" width="11" height="11" transform="rotate(0,675.5,556.5)"/><path d="M 670 595v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,675.5,600.5)"/><path d="M 670 650v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,675.5,655.5)"/><path d="M 670 661v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,675.5,666.5)"/><rect x="670" y="683" width="11" height="11" transform="rotate(0,675.5,688.5)"/><circle cx="675.5" cy="710.5" r="5.5" transform="rotate(0,675.5,710.5)"/><rect x="670" y="727" width="11" height="11" transform="rotate(0,675.5,732.5)"/><path d="M 670 749v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,675.5,754.5)"/><circle cx="686.5" cy="380.5" r="5.5" transform="rotate(0,686.5,380.5)"/><path d="M 681 463v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,686.5,468.5)"/><rect x="681" y="474" width="11" height="11" transform="rotate(0,686.5,479.5)"/><path d="M 681 496v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,686.5,501.5)"/><rect x="681" y="507" width="11" height="11" transform="rotate(0,686.5,512.5)"/><rect x="681" y="551" width="11" height="11" transform="rotate(0,686.5,556.5)"/><circle cx="686.5" cy="578.5" r="5.5" transform="rotate(0,686.5,578.5)"/><path d="M 681 617v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,686.5,622.5)"/><path d="M 681 628v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,686.5,633.5)"/><rect x="681" y="650" width="11" height="11" transform="rotate(0,686.5,655.5)"/><rect x="681" y="683" width="11" height="11" transform="rotate(0,686.5,688.5)"/><rect x="681" y="727" width="11" height="11" transform="rotate(0,686.5,732.5)"/><circle cx="686.5" cy="776.5" r="5.5" transform="rotate(0,686.5,776.5)"/><path d="M 692 408v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,697.5,413.5)"/><rect x="692" y="419" width="11" height="11" transform="rotate(0,697.5,424.5)"/><path d="M 692 430v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,697.5,435.5)"/><circle cx="697.5" cy="457.5" r="5.5" transform="rotate(0,697.5,457.5)"/><path d="M 692 474v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,697.5,479.5)"/><path d="M 692 485v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,697.5,490.5)"/><path d="M 692 507v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,697.5,512.5)"/><rect x="692" y="518" width="11" height="11" transform="rotate(0,697.5,523.5)"/><rect x="692" y="529" width="11" height="11" transform="rotate(0,697.5,534.5)"/><rect x="692" y="540" width="11" height="11" transform="rotate(0,697.5,545.5)"/><rect x="692" y="551" width="11" height="11" transform="rotate(0,697.5,556.5)"/><path d="M 692 562v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,697.5,567.5)"/><path d="M 692 595v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,697.5,600.5)"/><rect x="692" y="606" width="11" height="11" transform="rotate(0,697.5,611.5)"/><rect x="692" y="617" width="11" height="11" transform="rotate(0,697.5,622.5)"/><rect x="692" y="650" width="11" height="11" transform="rotate(0,697.5,655.5)"/><rect x="692" y="683" width="11" height="11" transform="rotate(0,697.5,688.5)"/><rect x="692" y="694" width="11" height="11" transform="rotate(0,697.5,699.5)"/><rect x="692" y="705" width="11" height="11" transform="rotate(0,697.5,710.5)"/><rect x="692" y="716" width="11" height="11" transform="rotate(0,697.5,721.5)"/><path d="M 692 727v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,697.5,732.5)"/><path d="M 692 749v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,697.5,754.5)"/><path d="M 703 419v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,708.5,424.5)"/><path d="M 703 430v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,708.5,435.5)"/><path d="M 703 485v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,708.5,490.5)"/><path d="M 703 496v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,708.5,501.5)"/><path d="M 703 529v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,708.5,534.5)"/><path d="M 703 584v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,708.5,589.5)"/><rect x="703" y="595" width="11" height="11" transform="rotate(0,708.5,600.5)"/><rect x="703" y="617" width="11" height="11" transform="rotate(0,708.5,622.5)"/><path d="M 703 639v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,708.5,644.5)"/><path d="M 703 650v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,708.5,655.5)"/><rect x="703" y="683" width="11" height="11" transform="rotate(0,708.5,688.5)"/><rect x="703" y="749" width="11" height="11" transform="rotate(0,708.5,754.5)"/><path d="M 703 771v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,708.5,776.5)"/><circle cx="719.5" cy="391.5" r="5.5" transform="rotate(0,719.5,391.5)"/><circle cx="719.5" cy="413.5" r="5.5" transform="rotate(0,719.5,413.5)"/><path d="M 714 441v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,719.5,446.5)"/><rect x="714" y="452" width="11" height="11" transform="rotate(0,719.5,457.5)"/><rect x="714" y="463" width="11" height="11" transform="rotate(0,719.5,468.5)"/><path d="M 714 474v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,719.5,479.5)"/><path d="M 714 496v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,719.5,501.5)"/><path d="M 714 507v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,719.5,512.5)"/><circle cx="719.5" cy="578.5" r="5.5" transform="rotate(0,719.5,578.5)"/><rect x="714" y="595" width="11" height="11" transform="rotate(0,719.5,600.5)"/><path d="M 714 617v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,719.5,622.5)"/><rect x="714" y="628" width="11" height="11" transform="rotate(0,719.5,633.5)"/><rect x="714" y="639" width="11" height="11" transform="rotate(0,719.5,644.5)"/><path d="M 714 672v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,719.5,677.5)"/><rect x="714" y="683" width="11" height="11" transform="rotate(0,719.5,688.5)"/><rect x="714" y="694" width="11" height="11" transform="rotate(0,719.5,699.5)"/><path d="M 714 705v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,719.5,710.5)"/><path d="M 714 727v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,719.5,732.5)"/><rect x="714" y="738" width="11" height="11" transform="rotate(0,719.5,743.5)"/><rect x="714" y="749" width="11" height="11" transform="rotate(0,719.5,754.5)"/><rect x="714" y="760" width="11" height="11" transform="rotate(0,719.5,765.5)"/><rect x="714" y="771" width="11" height="11" transform="rotate(0,719.5,776.5)"/><path d="M 725 419v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,730.5,424.5)"/><rect x="725" y="452" width="11" height="11" transform="rotate(0,730.5,457.5)"/><circle cx="730.5" cy="490.5" r="5.5" transform="rotate(0,730.5,490.5)"/><circle cx="730.5" cy="534.5" r="5.5" transform="rotate(0,730.5,534.5)"/><path d="M 725 551v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(180,730.5,556.5)"/><path d="M 725 584v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,730.5,589.5)"/><rect x="725" y="595" width="11" height="11" transform="rotate(0,730.5,600.5)"/><path d="M 725 606v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,730.5,611.5)"/><path d="M 725 639v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,730.5,644.5)"/><rect x="725" y="683" width="11" height="11" transform="rotate(0,730.5,688.5)"/><path d="M 725 716v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,730.5,721.5)"/><rect x="725" y="727" width="11" height="11" transform="rotate(0,730.5,732.5)"/><rect x="725" y="749" width="11" height="11" transform="rotate(0,730.5,754.5)"/><path d="M 725 771v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,730.5,776.5)"/><circle cx="741.5" cy="391.5" r="5.5" transform="rotate(0,741.5,391.5)"/><path d="M 736 408v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,741.5,413.5)"/><path d="M 736 419v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,741.5,424.5)"/><path d="M 736 441v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,741.5,446.5)"/><rect x="736" y="452" width="11" height="11" transform="rotate(0,741.5,457.5)"/><rect x="736" y="463" width="11" height="11" transform="rotate(0,741.5,468.5)"/><path d="M 736 474v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,741.5,479.5)"/><circle cx="741.5" cy="501.5" r="5.5" transform="rotate(0,741.5,501.5)"/><circle cx="741.5" cy="523.5" r="5.5" transform="rotate(0,741.5,523.5)"/><path d="M 736 540v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(-90,741.5,545.5)"/><rect x="736" y="551" width="11" height="11" transform="rotate(0,741.5,556.5)"/><path d="M 736 562v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(90,741.5,567.5)"/><path d="M 736 584v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,741.5,589.5)"/><path d="M 736 595v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,741.5,600.5)"/><circle cx="741.5" cy="633.5" r="5.5" transform="rotate(0,741.5,633.5)"/><circle cx="741.5" cy="655.5" r="5.5" transform="rotate(0,741.5,655.5)"/><path d="M 736 683v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,741.5,688.5)"/><path d="M 736 716v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,741.5,721.5)"/><path d="M 736 727v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,741.5,732.5)"/><path d="M 736 749v 11h 5.5a 5.5 5.5, 0, 0, 0, 0 -11" transform="rotate(0,741.5,754.5)"/></clipPath><clipPath id="clip-path-corners-square-color-0-0"><path d="M 252 287v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,257.5,292.5)"/><rect x="252" y="298" width="11" height="11" transform="rotate(0,257.5,303.5)"/><rect x="252" y="309" width="11" height="11" transform="rotate(0,257.5,314.5)"/><rect x="252" y="320" width="11" height="11" transform="rotate(0,257.5,325.5)"/><rect x="252" y="331" width="11" height="11" transform="rotate(0,257.5,336.5)"/><rect x="252" y="342" width="11" height="11" transform="rotate(0,257.5,347.5)"/><path d="M 252 353v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,257.5,358.5)"/><rect x="263" y="287" width="11" height="11" transform="rotate(0,268.5,292.5)"/><rect x="263" y="353" width="11" height="11" transform="rotate(0,268.5,358.5)"/><rect x="274" y="287" width="11" height="11" transform="rotate(0,279.5,292.5)"/><rect x="274" y="353" width="11" height="11" transform="rotate(0,279.5,358.5)"/><rect x="285" y="287" width="11" height="11" transform="rotate(0,290.5,292.5)"/><rect x="285" y="353" width="11" height="11" transform="rotate(0,290.5,358.5)"/><rect x="296" y="287" width="11" height="11" transform="rotate(0,301.5,292.5)"/><rect x="296" y="353" width="11" height="11" transform="rotate(0,301.5,358.5)"/><rect x="307" y="287" width="11" height="11" transform="rotate(0,312.5,292.5)"/><rect x="307" y="353" width="11" height="11" transform="rotate(0,312.5,358.5)"/><path d="M 318 287v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,323.5,292.5)"/><rect x="318" y="298" width="11" height="11" transform="rotate(0,323.5,303.5)"/><rect x="318" y="309" width="11" height="11" transform="rotate(0,323.5,314.5)"/><rect x="318" y="320" width="11" height="11" transform="rotate(0,323.5,325.5)"/><rect x="318" y="331" width="11" height="11" transform="rotate(0,323.5,336.5)"/><rect x="318" y="342" width="11" height="11" transform="rotate(0,323.5,347.5)"/><path d="M 318 353v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,323.5,358.5)"/></clipPath><clipPath id="clip-path-corners-dot-color-0-0"><path d="M 274 309v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,279.5,314.5)"/><rect x="274" y="320" width="11" height="11" transform="rotate(0,279.5,325.5)"/><path d="M 274 331v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,279.5,336.5)"/><rect x="285" y="309" width="11" height="11" transform="rotate(0,290.5,314.5)"/><rect x="285" y="320" width="11" height="11" transform="rotate(0,290.5,325.5)"/><rect x="285" y="331" width="11" height="11" transform="rotate(0,290.5,336.5)"/><path d="M 296 309v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,301.5,314.5)"/><rect x="296" y="320" width="11" height="11" transform="rotate(0,301.5,325.5)"/><path d="M 296 331v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,301.5,336.5)"/></clipPath><clipPath id="clip-path-corners-square-color-1-0"><path d="M 670 287v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,675.5,292.5)"/><rect x="670" y="298" width="11" height="11" transform="rotate(0,675.5,303.5)"/><rect x="670" y="309" width="11" height="11" transform="rotate(0,675.5,314.5)"/><rect x="670" y="320" width="11" height="11" transform="rotate(0,675.5,325.5)"/><rect x="670" y="331" width="11" height="11" transform="rotate(0,675.5,336.5)"/><rect x="670" y="342" width="11" height="11" transform="rotate(0,675.5,347.5)"/><path d="M 670 353v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,675.5,358.5)"/><rect x="681" y="287" width="11" height="11" transform="rotate(0,686.5,292.5)"/><rect x="681" y="353" width="11" height="11" transform="rotate(0,686.5,358.5)"/><rect x="692" y="287" width="11" height="11" transform="rotate(0,697.5,292.5)"/><rect x="692" y="353" width="11" height="11" transform="rotate(0,697.5,358.5)"/><rect x="703" y="287" width="11" height="11" transform="rotate(0,708.5,292.5)"/><rect x="703" y="353" width="11" height="11" transform="rotate(0,708.5,358.5)"/><rect x="714" y="287" width="11" height="11" transform="rotate(0,719.5,292.5)"/><rect x="714" y="353" width="11" height="11" transform="rotate(0,719.5,358.5)"/><rect x="725" y="287" width="11" height="11" transform="rotate(0,730.5,292.5)"/><rect x="725" y="353" width="11" height="11" transform="rotate(0,730.5,358.5)"/><path d="M 736 287v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,741.5,292.5)"/><rect x="736" y="298" width="11" height="11" transform="rotate(0,741.5,303.5)"/><rect x="736" y="309" width="11" height="11" transform="rotate(0,741.5,314.5)"/><rect x="736" y="320" width="11" height="11" transform="rotate(0,741.5,325.5)"/><rect x="736" y="331" width="11" height="11" transform="rotate(0,741.5,336.5)"/><rect x="736" y="342" width="11" height="11" transform="rotate(0,741.5,347.5)"/><path d="M 736 353v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,741.5,358.5)"/></clipPath><clipPath id="clip-path-corners-dot-color-1-0"><path d="M 692 309v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,697.5,314.5)"/><rect x="692" y="320" width="11" height="11" transform="rotate(0,697.5,325.5)"/><path d="M 692 331v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,697.5,336.5)"/><rect x="703" y="309" width="11" height="11" transform="rotate(0,708.5,314.5)"/><rect x="703" y="320" width="11" height="11" transform="rotate(0,708.5,325.5)"/><rect x="703" y="331" width="11" height="11" transform="rotate(0,708.5,336.5)"/><path d="M 714 309v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,719.5,314.5)"/><rect x="714" y="320" width="11" height="11" transform="rotate(0,719.5,325.5)"/><path d="M 714 331v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,719.5,336.5)"/></clipPath><clipPath id="clip-path-corners-square-color-0-1"><path d="M 252 705v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,257.5,710.5)"/><rect x="252" y="716" width="11" height="11" transform="rotate(0,257.5,721.5)"/><rect x="252" y="727" width="11" height="11" transform="rotate(0,257.5,732.5)"/><rect x="252" y="738" width="11" height="11" transform="rotate(0,257.5,743.5)"/><rect x="252" y="749" width="11" height="11" transform="rotate(0,257.5,754.5)"/><rect x="252" y="760" width="11" height="11" transform="rotate(0,257.5,765.5)"/><path d="M 252 771v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,257.5,776.5)"/><rect x="263" y="705" width="11" height="11" transform="rotate(0,268.5,710.5)"/><rect x="263" y="771" width="11" height="11" transform="rotate(0,268.5,776.5)"/><rect x="274" y="705" width="11" height="11" transform="rotate(0,279.5,710.5)"/><rect x="274" y="771" width="11" height="11" transform="rotate(0,279.5,776.5)"/><rect x="285" y="705" width="11" height="11" transform="rotate(0,290.5,710.5)"/><rect x="285" y="771" width="11" height="11" transform="rotate(0,290.5,776.5)"/><rect x="296" y="705" width="11" height="11" transform="rotate(0,301.5,710.5)"/><rect x="296" y="771" width="11" height="11" transform="rotate(0,301.5,776.5)"/><rect x="307" y="705" width="11" height="11" transform="rotate(0,312.5,710.5)"/><rect x="307" y="771" width="11" height="11" transform="rotate(0,312.5,776.5)"/><path d="M 318 705v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,323.5,710.5)"/><rect x="318" y="716" width="11" height="11" transform="rotate(0,323.5,721.5)"/><rect x="318" y="727" width="11" height="11" transform="rotate(0,323.5,732.5)"/><rect x="318" y="738" width="11" height="11" transform="rotate(0,323.5,743.5)"/><rect x="318" y="749" width="11" height="11" transform="rotate(0,323.5,754.5)"/><rect x="318" y="760" width="11" height="11" transform="rotate(0,323.5,765.5)"/><path d="M 318 771v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,323.5,776.5)"/></clipPath><clipPath id="clip-path-corners-dot-color-0-1"><path d="M 274 727v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(-90,279.5,732.5)"/><rect x="274" y="738" width="11" height="11" transform="rotate(0,279.5,743.5)"/><path d="M 274 749v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(180,279.5,754.5)"/><rect x="285" y="727" width="11" height="11" transform="rotate(0,290.5,732.5)"/><rect x="285" y="738" width="11" height="11" transform="rotate(0,290.5,743.5)"/><rect x="285" y="749" width="11" height="11" transform="rotate(0,290.5,754.5)"/><path d="M 296 727v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(0,301.5,732.5)"/><rect x="296" y="738" width="11" height="11" transform="rotate(0,301.5,743.5)"/><path d="M 296 749v 11h 11a 11 11, 0, 0, 0, -11 -11" transform="rotate(90,301.5,754.5)"/></clipPath></defs><defs/><path fill="#000000" d="M805.5,212.31c5.51,0,10,4.49,10,10v621h-631v-621c0-5.51,4.49-10,10-10H805.5 M805.5,182.31h-611 c-22.09,0-40,17.91-40,40v651h691v-651C845.5,200.22,827.59,182.31,805.5,182.31L805.5,182.31z"/>
+											<path fill="#595959" d="M940.5,870h-881c-7.46,0-13.5-6.04-13.5-13.5l0,0c0-7.46,6.04-13.5,13.5-13.5h881c7.46,0,13.5,6.04,13.5,13.5 l0,0C954,863.96,947.96,870,940.5,870z"/>
+											<path fill="#000000" d="M809,962H191c-50.81,0-92-41.19-92-92v0h802v0C901,920.81,859.81,962,809,962z"/>
+											<path fill="#000000" d="M768.77,971.07c-14.11-16.13-35.01-19.44-54.67-9.2c-9.98-9.67-28.38-9.98-44.13-4.35c-5.68,2.03-75.15,29.56-97.52,38.43 c-8.35-14.2-25.85-19.47-32.86-21.57c-11.39-3.42-166.66-31.01-225.5-18.17c-20.04,4.37-173.71,61.92-180.24,64.37 c-4.65,1.74-7.01,6.93-5.27,11.59c1.75,4.66,6.94,7.01,11.59,5.27c44.16-16.55,162.17-60.23,177.76-63.63 c51.68-11.28,201.93,13.46,216.5,17.83c17.97,5.39,25.09,12.04,24.6,22.97c-0.57,12.63-7.05,18.07-25.67,21.56 c-12.73,2.39-120.55,10.82-161.02,13.87c-4.96,0.37-8.67,4.69-8.3,9.65c0.36,4.73,4.3,8.33,8.96,8.32c0.23,0,0.46-0.01,0.69-0.03 c2.63-0.2,31.33-2.36,64.04-4.99c8.42,4.51,41.14,22,55.26,29.06c21.87,10.93,36.25,2.87,54.47-7.34c2.17-1.22,4.46-2.5,6.87-3.81 c11.02-6.01,147.26-89.29,163.74-100.45c5.16-3.49,23.08-13.64,37.18,2.48c3.41,3.9,5.03,9.02,4.55,14.41 c-0.56,6.33-3.9,12.23-9.4,16.63c-6.76,5.41-171.11,134.74-191.44,148.59c-35.01,23.84-77.4,30.45-125.98,19.65 c-10.79-2.4-137.83-38.25-203.5-56.87c-1.85-0.53-3.83-0.44-5.64,0.24l-45,17c-4.65,1.76-7,6.95-5.24,11.6 c1.76,4.65,6.95,7,11.6,5.24l42.22-15.95c24.7,7,188.44,53.38,201.65,56.32c16.47,3.66,32.32,5.49,47.52,5.49 c34.3,0,65.28-9.3,92.5-27.83c21.31-14.51,186.19-144.32,192.56-149.41c9.37-7.5,15.08-17.83,16.08-29.09 C778.62,988.6,775.45,978.71,768.77,971.07z M545.69,1065.1c-2.47,1.35-4.82,2.66-7.05,3.91c-18.45,10.34-24.89,13.3-37.62,6.94 c-7-3.5-18.97-9.78-30.12-15.68c30.98-2.6,59.01-5.16,65.76-6.42c10.64-2,38.92-7.3,40.33-38.44c0.03-0.65,0.03-1.28,0.03-1.91 c34.65-13.74,94.17-37.3,99.01-39.03c7.65-2.73,15.7-3.29,21-1.9C660.36,995.71,555.27,1059.87,545.69,1065.1z"/>
+											<polygon fill="#595959" points="0,1300 17.07,1300 195,1188 126,997 0,1032.71"/>
+											<text fill="#000000" fontSize="90" x="50%" y="98" dominantBaseline="middle" textAnchor="middle" fontFamily="sans-serif"> </text><rect x="218" y="253" height="563" width="564" clipPath="url('#clip-path-background-color')" fill="#ffffff"/><rect x="252" y="287" height="495" width="495" clipPath="url('#clip-path-dot-color')" fill="#000000"/><rect x="252" y="287" height="77" width="77" clipPath="url('#clip-path-corners-square-color-0-0')" fill="#000000"/><rect x="274" y="309" height="33" width="33" clipPath="url('#clip-path-corners-dot-color-0-0')" fill="#000000"/><rect x="670" y="287" height="77" width="77" clipPath="url('#clip-path-corners-square-color-1-0')" fill="#000000"/><rect x="692" y="309" height="33" width="33" clipPath="url('#clip-path-corners-dot-color-1-0')" fill="#000000"/><rect x="252" y="705" height="77" width="77" clipPath="url('#clip-path-corners-square-color-0-1')" fill="#000000"/><rect x="274" y="727" height="33" width="33" clipPath="url('#clip-path-corners-dot-color-0-1')" fill="#000000"/><image href="https://img.qrfy.com/img/large/f83bf4a4-484d-413b-90ed-1010bdfeb620.webp" x="417" y="457.5" width="165px" height="154px"/>
+										</svg>
 									</div>
 
 									<div className="md:hidden flex flex-col justify-center gap-[10px]">
 										<div className="flex items-center gap-1 ">
 											<li></li>
-											<img src="/images/momo.png" alt="Momo" className="w-[48px] h-auto rounded" />
+											<img
+												src="/images/momo.png"
+												// alt="Momo"
+												className="w-[48px] h-auto rounded"
+											/>
 											<a
 												href="https://me.momo.vn/m8IbTzsdfzfJfAsdCNsaCj"
 												target="_blank"
@@ -1068,20 +1242,32 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 										<div className="flex flex-col justify-center gap-[6px]">
 											<div className="flex items-center gap-1">
 												<li></li>
-												<div className="text-[#262824] text-sm font-bold">Bank</div>
+												<div className="text-[#262824] text-sm font-bold">
+													Bank
+												</div>
 											</div>
 											<div className="flex flex-col pl-5">
-												<div className="flex w-[250px] flex-col px-[12px] py-[10px] gap-[6px] bg-[#FAFAFA] rounded">
+												<div
+													className="flex w-[250px] flex-col px-[12px] py-[10px] gap-[6px] bg-[#FAFAFA] rounded">
 													<div>MB Bank</div>
 													<div>Cassavas</div>
-													<div className="flex justify-between items-center cursor-pointer" onClick={handleCopy}>
+													<div
+														className="flex justify-between items-center cursor-pointer"
+														onClick={handleCopy}
+													>
 														<div className="font-semibold">{accountNumber}</div>
 														{isCopyBank !== null && (
 															<div className="text-sm text-green-500">
 																{isCopyBank ? (
 																	<FaCheck />
 																) : (
-																	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+																	<svg
+																		xmlns="http://www.w3.org/2000/svg"
+																		width="20"
+																		height="20"
+																		viewBox="0 0 20 20"
+																		fill="none"
+																	>
 																		<g clipPath="url(#clip0_1523_1121)">
 																			<path
 																				d="M16.6667 7.5H9.16667C8.24619 7.5 7.5 8.24619 7.5 9.16667V16.6667C7.5 17.5871 8.24619 18.3333 9.16667 18.3333H16.6667C17.5871 18.3333 18.3333 17.5871 18.3333 16.6667V9.16667C18.3333 8.24619 17.5871 7.5 16.6667 7.5Z"
@@ -1100,7 +1286,11 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 																		</g>
 																		<defs>
 																			<clipPath id="clip0_1523_1121">
-																				<rect width="20" height="20" fill="white" />
+																				<rect
+																					width="20"
+																					height="20"
+																					fill="white"
+																				/>
 																			</clipPath>
 																		</defs>
 																	</svg>
@@ -1115,7 +1305,9 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 								</div>
 							</div>
 
-							<div className="text-[#1B1D1B] text-center md:text-[16px] md:leading-6 text-sm font-semibold">Thank you for your support!</div>
+							<div className="text-[#1B1D1B] text-center md:text-[16px] md:leading-6 text-sm font-semibold">
+								{dictionary.tks}
+							</div>
 						</div>
 					</div>
 				</div>

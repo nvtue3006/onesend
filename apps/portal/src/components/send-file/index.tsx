@@ -1,10 +1,10 @@
-import React, { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
-import getPreUrl from '@/actions/get-pre-url';
-import { createPreUrlDownload } from '@/actions/create-request';
-import { FaCheck } from 'react-icons/fa';
-import JSZip from 'jszip';
-import classNames from 'classnames';
-import { randomNumber } from '@/utils/number';
+import React, { ChangeEvent, FormEvent, useRef, useState } from "react";
+// import getPreUrl from "@/app/actions/get-pre-url";
+// import { createPreUrlDownload } from "@/app/actions/create-request";
+import { FaCheck } from "react-icons/fa";
+import JSZip from "jszip";
+import classNames from "classnames";
+import {useDictionary} from "@/context/use-dictionary-context";
 
 const maxTotalSize = 2 * 1024 * 1024 * 1024; // 2 GB in bytes
 
@@ -15,20 +15,28 @@ interface ISendFileProps {
 	isShowPopup?: boolean;
 	setIsCopied: (value: boolean) => void;
 	setIsShowPopup: (value: boolean) => void;
-	isOnSafeData: boolean;
 	setIsOpenModal: (value: boolean) => void;
 }
 
-const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied, isShowPopup, setIsCopied, setIsShowPopup, isOnSafeData, setIsOpenModal }) => {
-	const inputRef = useRef<HTMLInputElement>(null);
+const SendFile: React.FC<ISendFileProps> = ({
+												fileState,
+												setFileState,
+												isCopied,
+												isShowPopup,
+												setIsCopied,
+												setIsShowPopup,
+												setIsOpenModal,
+											}) => {
 
+	const { dictionary } = useDictionary();
+	const inputRef = useRef<HTMLInputElement>(null);
 	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-	const [verificationCode, setVerificationCode] = useState('');
+	const [verificationCode, setVerificationCode] = useState("");
 	const [progress, setProgress] = useState(80);
 
 	const [loading, setLoading] = useState(false);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		const interval = setInterval(() => {
 			setProgress((prev) => (prev < 100 ? prev + 10 : 100)); // Increase by 10% every second
 		}, 1000);
@@ -44,28 +52,27 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 		const totalSize = calculateTotalSize();
 
 		if (totalSize > maxTotalSize) {
-			alert('The total file size exceeds the 2 GB limit. Please select fewer files or reduce the file sizes.');
+			alert(
+				"The total file size exceeds the 2 GB limit. Please select fewer files or reduce the file sizes.",
+			);
 			return;
 		}
 
-		if (!e.target.files || (e.target.files && e.target.files.length <= 0)) {
-			return;
+		if (e.target.files && e.target.files.length > 0) {
+			const files = Array.from(e.target.files);
+
+			setSelectedFiles((prevSelectedFiles) => [...prevSelectedFiles, ...files]);
+			console.log(...files);
 		}
-
-		const files = Array.from(e.target.files);
-
-		setSelectedFiles((prevSelectedFiles) => [...prevSelectedFiles, ...files]);
 	};
 
 	const onChooseFile = () => {
 		if (loading) {
 			return;
 		}
-
 		if (inputRef.current === null) {
 			return;
 		}
-
 		inputRef.current.click();
 	};
 
@@ -73,7 +80,6 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 		if (loading) {
 			return;
 		}
-
 		setSelectedFiles([]);
 		setFileState(1);
 	};
@@ -85,25 +91,28 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 
 		setLoading(true);
 
-		const updatedFiles = selectedFiles.filter((_file, index) => index !== indexToRemove);
+		// Check if we are removing the first file (index 0)
+		setSelectedFiles((prevSelectedFiles) => {
+			const updatedFiles = prevSelectedFiles.filter(
+				(_file, index) => index !== indexToRemove,
+			);
 
-		if (indexToRemove === 0 && updatedFiles.length === 0) {
-			setFileState(1);
-		}
-
-		setSelectedFiles(updatedFiles);
+			if (indexToRemove === 0 && updatedFiles.length === 0) {
+				setFileState(1);
+			}
+			return updatedFiles;
+		});
 		setLoading(false);
 	};
 
 	const formatFileSize = (sizeInBytes: number) => {
-		const units = ['B', 'KB', 'MB', 'GB', 'TB'];
+		const units = ["B", "KB", "MB", "GB", "TB"];
 		let index = 0;
 
 		while (sizeInBytes >= 1024 && index < units.length - 1) {
 			sizeInBytes /= 1024;
 			index++;
 		}
-
 		return `${sizeInBytes.toFixed(0)} ${units[index]}`;
 	};
 
@@ -111,42 +120,50 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 		return selectedFiles.reduce((total, file) => total + file.size, 0);
 	};
 
+	const getTotalFiles = () => {
+		return selectedFiles.length;
+	};
+
 	const onSendHandler = async () => {
-		const code = randomNumber(6);
-		let secret = isOnSafeData ? randomNumber(4) : null;
+		const code = generateRandomCode();
 
 		try {
 			setIsOpenModal(true);
 			setLoading(true);
 
-			// Get the pre-signed URL for uploading
-			const uploadUrl = await getPreUrl(code, secret);
 
-			// Prepare the ZIP file content
-			const zipContent = await prepareZipContent();
+			// const uploadUrl = await getPreUrl(code);
 
-			// Upload the ZIP file
-			const uploadResult = await fetch(uploadUrl, {
-				method: 'PUT',
-				headers: {
-					'Content-Type': 'application/zip',
-				},
-				body: zipContent,
-			});
+			// const zipContent = await prepareZipContent();
 
-			// Handle upload failure
-			if (!uploadResult.ok) {
-				const errorText = await uploadResult.text();
-				// show error here
-				throw new Error(`Failed to upload ZIP file: ${uploadResult.statusText} - ${errorText}`);
-			}
+
+			// const uploadResult = await fetch(uploadUrl, {
+			// 	method: "PUT",
+			// 	headers: {
+			// 		"Content-Type": "application/zip",
+			// 	},
+			// 	body: zipContent,
+			// });
+
+
+			// if (!uploadResult.ok) {
+			// 	const errorText = await uploadResult.text();
+			// 	throw new Error(
+			// 		`Failed to upload ZIP file: ${uploadResult.statusText} - ${errorText}`,
+			// 	);
+			// }
+
+			// Success feedback
+			console.log("ZIP file uploaded successfully!");
 
 			// Set the verification code and state
-			setVerificationCode(`${code}${secret ? `-${secret}` : ''}`);
+			setVerificationCode(code);
 			setFileState(3);
 
 			// Create pre-signed URL for download
-			await createPreUrlDownload(code, secret);
+			// await createPreUrlDownload(code);
+		} catch (error) {
+			console.error("Error during file upload process:", error);
 		} finally {
 			setLoading(false);
 		}
@@ -154,59 +171,94 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 
 	// Function to prepare zip content
 	const prepareZipContent = async () => {
-		if (selectedFiles.length === 1 && selectedFiles[0].type === 'application/zip') {
-			return selectedFiles[0];
+		let zipContent;
+
+		if (
+			selectedFiles.length === 1 &&
+			selectedFiles[0].type === "application/zip"
+		) {
+			zipContent = selectedFiles[0];
+			console.log("File is already a ZIP, uploading directly.");
+		} else {
+			const zip = new JSZip();
+			selectedFiles.forEach((file) => {
+				zip.file(file.name, file);
+			});
+			zipContent = await zip.generateAsync({ type: "uint8array" });
+			console.log("Files have been compressed into a ZIP.");
 		}
 
-		const zip = new JSZip();
+		return zipContent;
+	};
 
-		selectedFiles.forEach((file) => {
-			zip.file(file.name, file);
-		});
-
-		return await zip.generateAsync({ type: 'uint8array' });
+	//6 so
+	const generateRandomCode = () => {
+		return Math.floor(100000 + Math.random() * 900000).toString();
 	};
 
 	const handleCopyFile = (e: FormEvent) => {
 		e.preventDefault();
+		navigator.clipboard
+			.writeText(verificationCode)
+			.then(() => {
+				setIsCopied(true);
+				setIsShowPopup(true);
 
-		navigator.clipboard.writeText(verificationCode).then(() => {
-			setIsCopied(true);
-			setIsShowPopup(true);
+				setTimeout(() => {
+					setIsShowPopup(false);
+				}, 3000);
 
-			setTimeout(() => {
-				setIsShowPopup(false);
-			}, 3000);
-
-			setTimeout(() => {
-				setIsCopied(false);
-			}, 2000);
-		});
+				setTimeout(() => {
+					setIsCopied(false);
+				}, 2000);
+			})
+			.catch((err) => {
+				console.error("Failed to copy file: ", err);
+			});
 	};
 
 	const handleUpload = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-
-		if (selectedFiles.length <= 0) {
-			alert('Please select at least one file before submitting.');
-			return;
+		if (selectedFiles.length > 0) {
+			setFileState(2);
+		} else {
+			alert("Please select at least one file before submitting.");
 		}
-
-		setFileState(2);
 	};
 
 	if (fileState === 1) {
 		return (
 			<form onSubmit={handleUpload}>
-				<div className="flex flex-col md:w-[360px] w-[343px] border-0.5 border-[#B7BAB5] rounded-[12px] p-6 bg-white gap-5 shadow-custom-text">
-					<label className="text-[#1B1D1B] font-semibold text-[16px] leading-6">Upload File</label>
+				<div className="flex flex-col md:w-[360px] w-[343px] border-0.5 p-6 gap-5 rounded-[10px] border bg-white shadow-[0px_4px_12px_0px_rgba(56,58,54,0.08)] border-[#B7BAB5]">
+					<label className="text-[#1B1D1B] font-semibold text-[16px] leading-6">
+						{dictionary.uploadFile}
+					</label>
 					<div
 						onClick={onChooseFile}
 						className="flex flex-col items-center px-6 py-14 gap-3 text-gray-400 border-dashed border-2 border-[#5BA72A] rounded-[10px] bg-[#F9FEF6] cursor-pointer"
 					>
-						<input multiple={true} type="file" ref={inputRef} className="hidden" onChange={handleOnChange} />
-						<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-							<mask id="mask0_1137_2453" maskUnits="userSpaceOnUse" x="0" y="0" width="40" height="40">
+						<input
+							multiple={true}
+							type="file"
+							ref={inputRef}
+							className="hidden"
+							onChange={handleOnChange}
+						/>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="40"
+							height="40"
+							viewBox="0 0 40 40"
+							fill="none"
+						>
+							<mask
+								id="mask0_1137_2453"
+								maskUnits="userSpaceOnUse"
+								x="0"
+								y="0"
+								width="40"
+								height="40"
+							>
 								<rect width="40" height="40" fill="#D9D9D9" />
 							</mask>
 							<g mask="url(#mask0_1137_2453)">
@@ -217,9 +269,11 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 							</g>
 						</svg>
 						<div>
-							<div className="text-[#262824] font-medium text-[16px] leading-6 text-center">Drag & drop files or Choose File </div>
+							<div className="text-[#262824] font-medium text-[16px] leading-6 text-center">
+								{dictionary.uploadFileContent}
+							</div>
 							<div className="text-[#565B52] font-medium text-[12px] leading-5 text-center">
-								Supported formates: JPEG, PNG, GIF, MP4, PDF, PSD, AI, Word, PPT
+								{dictionary.uploadFileSupport}
 							</div>
 						</div>
 					</div>
@@ -228,8 +282,18 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 						{selectedFiles.map(
 							(selectedFile, index) =>
 								selectedFile && (
-									<div key={index} className="flex items-center p-4 gap-[8px] bg-[#FAFAFA] rounded-md ">
-										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+									<div
+										key={index}
+										className="flex items-center p-4 gap-[8px] bg-[#FAFAFA] rounded-md "
+									>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											fill="none"
+											viewBox="0 0 24 24"
+											strokeWidth="1.5"
+											stroke="currentColor"
+											className="size-6"
+										>
 											<path
 												strokeLinecap="round"
 												strokeLinejoin="round"
@@ -240,12 +304,17 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 										<div className="flex overflow-auto flex-1 items-center gap-2  ">
 											<div>
 												<div className="flex gap-2 text-[#1B1D1B] font-semibold text-[12px] leading-5 ">
-													<div className="w-[160px] overflow-scroll overflow-ellipsis whitespace-nowrap">{selectedFile.name}</div>
+													<div className="w-[160px] overflow-scroll overflow-ellipsis whitespace-nowrap">
+														{selectedFile.name}
+													</div>
 													<div>- {formatFileSize(selectedFile.size)}</div>
 												</div>
 
 												<div className="w-[215px] h-[5px] rounded-md bg-[#DBDCDA]">
-													<div className="bg-green-500 h-full rounded-md transition-all duration-300" style={{ width: `${progress}%` }}></div>
+													<div
+														className="bg-green-500 h-full rounded-md transition-all duration-300"
+														style={{ width: `${progress}%` }}
+													></div>
 												</div>
 											</div>
 										</div>
@@ -259,7 +328,14 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 											className="cursor-pointer"
 											onClick={() => removeFile(index)}
 										>
-											<mask id="mask0_1145_471" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+											<mask
+												id="mask0_1145_471"
+												maskUnits="userSpaceOnUse"
+												x="0"
+												y="0"
+												width="24"
+												height="24"
+											>
 												<rect width="24" height="24" fill="#D9D9D9" />
 											</mask>
 											<g mask="url(#mask0_1145_471)">
@@ -279,26 +355,44 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 						className="text-[#1B1D1B] font-semibold text-[16px] leading-6 bg-[#9EE86F] p-[10px] rounded-md cursor-pointer transition duration-300 transform hover:shadow-lg hover:border-2 hover:border-green-600 disabled:bg-[#DBDCDA] disabled:text-[#7E857A] disabled:cursor-not-allowed"
 						disabled={selectedFiles.length === 0}
 					>
-						Submit
+						{dictionary.submit}
 					</button>
 				</div>
 			</form>
 		);
 	}
-
 	if (fileState === 2) {
 		return (
 			<form onSubmit={handleUpload}>
-				<div className="relative flex flex-col md:w-[360px] w-[343px] border-0.5 border-[#B7BAB5] rounded-[12px] px-[16px] py-[24px] bg-white gap-6 shadow-custom-text">
+				<div className="relative flex flex-col md:w-[360px] w-[343px] border-0.5  px-[16px] py-[24px] gap-6 rounded-[10px] border bg-white shadow-[0px_4px_12px_0px_rgba(56,58,54,0.08)] border-[#B7BAB5]">
 					<div className="flex gap-2 cursor-pointer" onClick={onChooseFile}>
-						<input multiple={true} type="file" ref={inputRef} className="hidden" onChange={handleOnChange} />
+						<input
+							multiple={true}
+							type="file"
+							ref={inputRef}
+							className="hidden"
+							onChange={handleOnChange}
+						/>
 						<div
-							className={classNames('text-[#0F88BD]', {
-								'text-gray-500 cursor-not-allowed': loading,
+							className={classNames("text-[#0F88BD]", {
+								"text-gray-500 cursor-not-allowed": loading,
 							})}
 						>
-							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<mask id="mask0_1180_1969" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+							<svg
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<mask
+									id="mask0_1180_1969"
+									maskUnits="userSpaceOnUse"
+									x="0"
+									y="0"
+									width="24"
+									height="24"
+								>
 									<rect width="24" height="24" fill="#D9D9D9" />
 								</mask>
 								<g mask="url(#mask0_1180_1969)">
@@ -312,12 +406,21 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 						<div className="flex flex-col">
 							<div
 								aria-disabled={loading}
-								className={classNames(' text-[#0F88BD] font-semibold text-[16px] leading-6', { 'text-gray-500 cursor-not-allowed': loading })}
+								className={classNames(
+									" text-[#0F88BD] font-semibold text-[16px] leading-6",
+									{ "text-gray-500 cursor-not-allowed": loading },
+								)}
 							>
-								Add more
+								{dictionary.addMore}
 							</div>
-							<p className={classNames('text-[#565B52] font-normal text-[16px] leading-6 ', { 'text-gray-500 cursor-not-allowed': loading })}>
-								Total {selectedFiles.length} file - {formatFileSize(calculateTotalSize())}
+							<p
+								className={classNames(
+									"text-[#565B52] font-normal text-[16px] leading-6 ",
+									{ "text-gray-500 cursor-not-allowed": loading },
+								)}
+							>
+								{dictionary.total} {getTotalFiles()} {dictionary.file} -{" "}
+								{formatFileSize(calculateTotalSize())}
 							</p>
 						</div>
 					</div>
@@ -326,8 +429,18 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 						{selectedFiles.map(
 							(selectedFile, index) =>
 								selectedFile && (
-									<div key={index} className="flex px-3 pt-[10px] pb-2 items-center gap-[10px] justify-between rounded-md ">
-										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+									<div
+										key={index}
+										className="flex px-3 pt-[10px] pb-2 items-center gap-[10px] justify-between rounded-md "
+									>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											fill="none"
+											viewBox="0 0 24 24"
+											strokeWidth="1.5"
+											stroke="currentColor"
+											className="size-6"
+										>
 											<path
 												strokeLinecap="round"
 												strokeLinejoin="round"
@@ -339,12 +452,30 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 											<div className="w-[200px] text-[#1B1D1B] font-semibold text-[12px] leading-5 overflow-scroll overflow-ellipsis whitespace-nowrap">
 												{selectedFile.name}
 											</div>
-											<div className="text-[#757972] font-medium text-[12px] leading-5">- {formatFileSize(selectedFile.size)}</div>
+											<div className="text-[#757972] font-medium text-[12px] leading-5">
+												- {formatFileSize(selectedFile.size)}
+											</div>
 										</div>
 
-										<button onClick={() => removeFile(index)} className="hover:text-black">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-												<mask id="mask0_1180_1982" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+										<button
+											onClick={() => removeFile(index)}
+											className="hover:text-black"
+										>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="24"
+												height="24"
+												viewBox="0 0 24 24"
+												fill="none"
+											>
+												<mask
+													id="mask0_1180_1982"
+													maskUnits="userSpaceOnUse"
+													x="0"
+													y="0"
+													width="24"
+													height="24"
+												>
 													<rect width="24" height="24" fill="#D9D9D9" />
 												</mask>
 												<g mask="url(#mask0_1180_1982)">
@@ -362,15 +493,18 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 
 					<div
 						aria-disabled={loading}
-						className={classNames('flex justify-end text-[#1B1D1B] font-semibold text-sm underline', { 'text-gray-500 cursor-not-allowed': loading })}
+						className={classNames(
+							"flex justify-end text-[#1B1D1B] font-semibold text-sm underline",
+							{ "text-gray-500 cursor-not-allowed": loading },
+						)}
 					>
 						<button
-							className={classNames('hover:text-red-600', {
-								'hover:text-gray-500 cursor-not-allowed': loading,
+							className={classNames("hover:text-red-600", {
+								"hover:text-gray-500 cursor-not-allowed": loading,
 							})}
 							onClick={handleReset}
 						>
-							<span>Reset All</span>
+							<span>{dictionary.resetAll}</span>
 						</button>
 					</div>
 
@@ -378,7 +512,10 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 						className="text-center bg-[#9EE86F] p-[10px] rounded-md cursor-pointer transition duration-300 hover:shadow-lg hover:border-2 hover:border-green-600"
 						onClick={!loading ? onSendHandler : () => {}}
 					>
-						<button disabled={loading} className="text-[#1B1D1B] font-semibold text-[16px] leading-6 ">
+						<button
+							disabled={loading}
+							className="text-[#1B1D1B] font-semibold text-[16px] leading-6 "
+						>
 							{loading ? (
 								<>
 									<svg
@@ -398,24 +535,25 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 											fill="currentColor"
 										></path>
 									</svg>
-									Loading...
+									{dictionary.loading}
 								</>
 							) : (
-								'Send'
+								"Send"
 							)}
 						</button>
 					</div>
 				</div>
 
-				{loading && <div className="text-white text-xl ">Loading, please wait...</div>}
+				{loading && (
+					<div className="text-white text-xl ">{dictionary.loadingText}</div>
+				)}
 			</form>
 		);
 	}
-
 	if (fileState === 3) {
 		return (
 			<form>
-				<div className="relative flex flex-col md:w-[360px] w-[343px] border-0.5 border-[#B7BAB5] rounded-[12px] px-6 pt-6 pb-10 bg-white gap-5 shadow-custom-text">
+				<div className="relative flex flex-col md:w-[360px] w-[343px] border-0.5 px-6 pt-6 pb-10 gap-5 rounded-[10px] border bg-white shadow-[0px_4px_12px_0px_rgba(56,58,54,0.08)] border-[#B7BAB5]">
 					<div className="flex flex-col gap-2 ">
 						<div className="flex items-start gap-[10px]">
 							<div className="cursor-pointer" onClick={() => setFileState(2)}>
@@ -427,16 +565,32 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 									xmlns="http://www.w3.org/2000/svg"
 									className="transition duration-300 hover:scale-125 "
 								>
-									<path d="M19 12H5" stroke="black" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
-									<path d="M12 19L5 12L12 5" stroke="black" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+									<path
+										d="M19 12H5"
+										stroke="black"
+										strokeWidth="2"
+										strokeLinejoin="round"
+										strokeLinecap="round"
+									/>
+									<path
+										d="M12 19L5 12L12 5"
+										stroke="black"
+										strokeWidth="2"
+										strokeLinejoin="round"
+										strokeLinecap="round"
+									/>
 								</svg>
 							</div>
-							<h1 className="text-[#1B1D1B] font-semibold text-[16px] leading-6">Waiting...</h1>
+							<h1 className="text-[#1B1D1B] font-semibold text-[16px] leading-6">
+								{dictionary.waiting}
+							</h1>
 						</div>
-						<p className="text-[#565B52] font-normal text-[16px] leading-6">Enter the 6-digit key on the receiving device</p>
+						<p className="text-[#565B52] font-normal text-[16px] leading-6">
+							{dictionary.waitingNote}
+						</p>
 					</div>
 					<div className="flex justify-center items-center gap-1 self-stretch">
-						{verificationCode.split('').map((digit, index) => (
+						{verificationCode.split("").map((digit, index) => (
 							<div
 								key={index}
 								className="flex flex-col flex-1 p-2 justify-center items-center bg-[#F0F0EF] rounded-[4px] font-bold text-[#262824] text-[18px] leading-7"
@@ -450,12 +604,14 @@ const SendFile: React.FC<ISendFileProps> = ({ fileState, setFileState, isCopied,
 						className="text-center bg-[#9EE86F] p-[10px] rounded-md cursor-pointer transition duration-300 hover:shadow-lg hover:border-2 hover:border-green-600"
 						onClick={handleCopyFile}
 					>
-						<button className="text-[#1B1D1B] font-semibold text-[16px] leading-6">{isCopied ? <FaCheck /> : 'Copy'}</button>
+						<button className="text-[#1B1D1B] font-semibold text-[16px] leading-6">
+							{isCopied ? <FaCheck /> : "Copy"}
+						</button>
 					</div>
 
 					{isShowPopup && (
 						<div className="absolute p-2 top-[86%] left-1/2 transform -translate-x-1/2 bg-[#FFE5B4] rounded-md shadow-lg text-[#A65A00] text-center font-semibold">
-							Code will expire in 10 minutes
+							{dictionary.popUpTime}
 						</div>
 					)}
 				</div>

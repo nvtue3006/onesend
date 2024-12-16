@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { getRequest } from '@/actions/get-request';
-import { getPreUrlForDownload } from '@/actions/get-pre-url-download';
-import { deleteS3Handler } from '@/actions/detele-code-s3';
-import { decryptText } from '@/actions/encrypt-text';
+import React, { useEffect, useState } from "react";
+import {useDictionary} from "@/context/use-dictionary-context";
+// import { getRequest } from "@/app/actions/get-request";
+// import { getPreUrlForDownload } from "@/app/actions/get-pre-url-download";
+// import { deleteS3Handler } from "@/app/actions/detele-code-s3";
+// import { decryptText } from "@/app/actions/encrypt-text";
 
 interface IReceiveProps {
-	setOption: (option: 'TEXT' | 'FILE') => void;
+	setOption: (option: "TEXT" | "FILE") => void;
 	setTextValue: (value: string) => void;
 	setTextState: (value: number) => void;
 }
 
-const Receive: React.FC<IReceiveProps> = ({ setOption, setTextValue, setTextState }) => {
-	const [input, setInput] = useState('');
+const Receive: React.FC<IReceiveProps> = ({setOption, setTextValue, setTextState,}) => {
+	const { dictionary } = useDictionary();
+	const [code, setCode] = useState("");
 	const [showAlert, setShowAlert] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [showSuccessPopup, setShowSuccessPopup] = useState(false);
@@ -28,8 +30,8 @@ const Receive: React.FC<IReceiveProps> = ({ setOption, setTextValue, setTextStat
 	const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value;
 
-		if (/^[0-9-]*$/.test(value) && value.length <= 11) {
-			setInput(value);
+		if (/^[0-9-]*$/.test(value) && value.length <= 6) {
+			setCode(value);
 		}
 	};
 
@@ -37,109 +39,89 @@ const Receive: React.FC<IReceiveProps> = ({ setOption, setTextValue, setTextStat
 		setLoading(true);
 		setShowAlert(false);
 
-		// Tách `code` và `secret` từ input
-		const parts = input.split('-');
-		const code = parts[0]; // Phần đầu là code
-		const secret = parts.length === 2 ? parts[1] : ''; // Nếu có 2 phần, lấy phần thứ 2 làm secret
-
-		try {
-			if (!code || code.length !== 6) {
-				setShowAlert(true);
-				setLoading(false);
-				return;
-			}
-			if (secret && secret.length !== 4) {
-				setShowAlert(true);
-				setLoading(false);
-				return;
-			}
-
-			// Thực hiện tìm kiếm
-			let request;
-			if (secret) {
-				request = await getRequest(code, secret);
-			} else {
-				request = await getRequest(code, '');
-			}
-
-			if (request.error === 'NOT_FOUND') {
-				setShowAlert(true);
-				setLoading(false);
-				return;
-			}
-
-			if (request.error === 'INVALID_SECRET') {
-				setShowAlert(true);
-				setLoading(false);
-				return;
-			}
-
-			if (request.type === 'TEXT') {
-				const decryptedContent = await decryptText(request.content);
-				setTextValue(decryptedContent);
-				setTextState(1);
-				setOption('TEXT');
-			} else if (request.type === 'FILE') {
-				const result = await getPreUrlForDownload(code, secret);
-				console.log('Pre-signed download URL:', result);
-
-				try {
-					const downloadUrl = result;
-					const link = document.createElement('a');
-					link.href = downloadUrl;
-					link.download = secret ? `${code}-${secret}.zip` : `${code}.zip`;
-					document.body.appendChild(link);
-					link.click();
-					document.body.removeChild(link);
-					console.log('File downloaded successfully!');
-
-					// Xóa file ZIP trên S3 sau khi tải xong
-					await deleteS3Handler(code, secret);
-
-					setShowSuccessPopup(true);
-					setTimeout(() => setShowSuccessPopup(false), 3000);
-
-					setOption('FILE');
-				} catch (error) {
-					console.error('Failed to download ZIP file:', error);
-				}
-			}
-		} catch (error) {
-			console.error('Unexpected error occurred:', error);
-		} finally {
-			setLoading(false);
-		}
+		// try {
+		// 	const request = await getRequest(code);
+		//
+		// 	if (request.error === "NOT_FOUND") {
+		// 		setShowAlert(true);
+		// 		setLoading(false);
+		// 		return;
+		// 	}
+		//
+		// 	if (request.error === "INVALID_SECRET") {
+		// 		setShowAlert(true);
+		// 		setLoading(false);
+		// 		return;
+		// 	}
+		//
+		// 	if (request.type === "TEXT") {
+		// 		const decryptedContent = await decryptText(request.content);
+		// 		setTextValue(decryptedContent);
+		// 		setTextState(1);
+		// 		setOption("TEXT");
+		// 	} else if (request.type === "FILE") {
+		// 		const result = await getPreUrlForDownload(code);
+		// 		console.log("Pre-signed download URL:", result);
+		//
+		// 		try {
+		// 			const downloadUrl = result;
+		// 			const link = document.createElement("a");
+		// 			link.href = downloadUrl;
+		// 			link.download = `${code}.zip`;
+		// 			document.body.appendChild(link);
+		// 			link.click();
+		// 			document.body.removeChild(link);
+		// 			console.log("File downloaded successfully!");
+		//
+		// 			// Xóa file ZIP trên S3 sau khi tải xong
+		// 			await deleteS3Handler(code);
+		//
+		// 			setShowSuccessPopup(true);
+		// 			setTimeout(() => setShowSuccessPopup(false), 3000);
+		//
+		// 			setOption("FILE");
+		// 		} catch (error) {
+		// 			console.error("Failed to download ZIP file:", error);
+		// 		}
+		// 	}
+		// } catch (error) {
+		// 	console.error("Unexpected error occurred:", error);
+		// } finally {
+		// 	setLoading(false);
+		// }
 	};
 
 	const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (e.key === 'Enter' && input) {
+		if (e.key === "Enter" && code) {
 			await handleRequest();
 		}
 	};
 
 	return (
-		<div className="flex flex-col md:w-[360px] w-[343px] border-0.5 border-[#B7BAB5] rounded-[12px] p-4 bg-white gap-4 shadow-custom-text">
-			<label className="text-[#1B1D1B] font-semibold text-[16px] leading-6">Receive</label>
+		<div className="flex flex-col md:w-[360px] w-[343px] border-0.5 p-4 gap-4 rounded-[10px] border bg-white shadow-[0px_4px_12px_0px_rgba(56,58,54,0.08)] border-[#B7BAB5]">
+			<label className="text-[#1B1D1B] font-semibold text-[16px] leading-6">
+				{dictionary.receive}
+			</label>
 			<div className="flex flex-col">
 				<div className="flex items-center gap-3 py-[6px] pr-[6px] pl-[10px] bg-white border rounded-[6px] border-[#B7BAB5] ">
 					<input
 						className="text-[#7E857A] font-normal text-[16px] leading-6 flex-grow outline-none"
 						type="text"
-						placeholder="Input key"
+						placeholder={dictionary.inputKeyPlaceholder}
 						maxLength={11}
-						value={input}
+						value={code}
 						onChange={handleChangeInput}
 						onKeyDown={handleKeyDown}
 					/>
 					<div
-						className={`flex items-center text-center p-1 ${input ? 'bg-[#9EE86F]' : 'bg-gray-300'} rounded-[4px] transition duration-300 ${input ? 'hover:border-2 hover:border-green-600' : ''}`}
+						className={`flex items-center text-center p-1 ${code ? "bg-[#9EE86F]" : "bg-gray-300"} rounded-[4px] transition duration-300 ${code ? "hover:border-2 hover:border-green-600" : ""}`}
 					>
 						<button
-							disabled={!input || loading}
+							disabled={!code || loading}
 							onClick={handleRequest}
 							className={`${
-								!input || loading ? 'cursor-not-allowed' : 'cursor-pointer'
-							} ${loading ? 'opacity-50' : 'opacity-100'} transition-opacity duration-200`}
+								!code || loading ? "cursor-not-allowed" : "cursor-pointer"
+							} ${loading ? "opacity-50" : "opacity-100"} transition-opacity duration-200`}
 						>
 							{loading ? (
 								<svg
@@ -160,21 +142,45 @@ const Receive: React.FC<IReceiveProps> = ({ setOption, setTextValue, setTextStat
 									></path>
 								</svg>
 							) : (
-								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M5 12H19" stroke="#1B1D1B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-									<path d="M12 5L19 12L12 19" stroke="#1B1D1B" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+								<svg
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M5 12H19"
+										stroke="#1B1D1B"
+										strokeWidth="2"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									/>
+									<path
+										d="M12 5L19 12L12 19"
+										stroke="#1B1D1B"
+										strokeWidth="2"
+										strokeLinejoin="round"
+										strokeLinecap="round"
+									/>
 								</svg>
 							)}
 						</button>
 					</div>
 				</div>
 
-				{loading && <div className="text-center text-black text-[14px] font-semibold leading-6">Downloading, please wait...</div>}
+				{loading && (
+					<div className="text-center text-black text-[14px] font-semibold leading-6">
+						{dictionary.downLoad}
+					</div>
+				)}
 
 				{showSuccessPopup && (
 					<div className="fixed inset-x-0 top-2 flex items-center justify-center z-50">
 						<div className="bg-green-500 rounded-lg shadow-lg p-5 max-w-sm text-center">
-							<p className="text-lg font-semibold text-white leading-6">Download completed successfully!</p>
+							<p className="text-lg font-semibold text-white leading-6">
+								{dictionary.popUpSuccess}
+							</p>
 						</div>
 					</div>
 				)}
@@ -182,14 +188,23 @@ const Receive: React.FC<IReceiveProps> = ({ setOption, setTextValue, setTextStat
 				{showAlert && (
 					<div className="fixed inset-x-0 top-2 flex items-center justify-center z-50">
 						<div className="flex gap-3 items-center rounded-lg shadow-lg p-5 max-w-sm text-center bg-black">
-							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-red-500">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								strokeWidth="1.5"
+								stroke="currentColor"
+								className="w-6 h-6 text-red-500"
+							>
 								<path
 									strokeLinecap="round"
 									strokeLinejoin="round"
 									d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
 								/>
 							</svg>
-							<p className="text-lg font-semibold text-white leading-6">The key is invalid or has expired</p>
+							<p className="text-lg font-semibold text-white leading-6">
+								{dictionary.invalidKey}
+							</p>
 						</div>
 					</div>
 				)}
