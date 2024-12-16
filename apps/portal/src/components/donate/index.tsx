@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import {useDictionary} from "@/context/use-dictionary-context";
+import Image from "next/image";
+import momoImage from "../../../public/images/momo.png";
 
 interface IDonateProps {
 	isOpenModal: boolean;
@@ -1225,11 +1227,7 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 									<div className="md:hidden flex flex-col justify-center gap-[10px]">
 										<div className="flex items-center gap-1 ">
 											<li></li>
-											<img
-												src="/images/momo.png"
-												// alt="Momo"
-												className="w-[48px] h-auto rounded"
-											/>
+											<Image className="w-[48px] h-auto rounded" src={momoImage} alt="momo"/>
 											<a
 												href="https://me.momo.vn/m8IbTzsdfzfJfAsdCNsaCj"
 												target="_blank"
@@ -1239,6 +1237,7 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 												Click Here
 											</a>
 										</div>
+
 										<div className="flex flex-col justify-center gap-[6px]">
 											<div className="flex items-center gap-1">
 												<li></li>

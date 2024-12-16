@@ -8,7 +8,7 @@
     "static/chunks/src_components_donate_index_tsx_1c7cde._.js",
     "static/chunks/src_components_40c5fe._.js",
     "static/chunks/src_app_[lang]_page_tsx_cb9d60._.js",
-    "static/chunks/public_images_adcfd5._.js",
+    "static/chunks/public_images_c51008._.js",
     "static/chunks/08b5e_next_476259._.js",
     "static/chunks/08b5e_jszip_lib_e13ccc._.js",
     "static/chunks/08b5e_pako_e26751._.js",
