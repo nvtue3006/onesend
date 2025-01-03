@@ -19,12 +19,19 @@ export class Requests {
 			return null;
 		}
 
-		const encryptionService = new Encryption();
+		if (request.type === 'TEXT') {
+			const encryptionService = new Encryption();
 
-		const decryptContent = await encryptionService.decrypt(request.content);
+			const decryptContent = await encryptionService.decrypt(request.content);
+
+			return {
+				content: decryptContent,
+				type: request.type,
+			};
+		}
 
 		return {
-			content: decryptContent,
+			content: '',
 			type: request.type,
 		};
 	}
