@@ -1,13 +1,11 @@
 import { ErrorVars } from '@/shared/error/error-vars';
 import mongoose from 'mongoose';
-import { errorHandler } from '@/shared/decorations/error-handler';
 
 export class ModelBase {
 	constructor() {
 		this.initMongoClient();
 	}
 
-	@errorHandler
 	public async initMongoClient(): Promise<void> {
 		if (!process.env.DATABASE_URL) {
 			throw new Error(ErrorVars.IN001_ENV_MISSING + `[DATABASE_UR]`);

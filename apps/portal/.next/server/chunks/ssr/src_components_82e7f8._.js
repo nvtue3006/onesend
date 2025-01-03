@@ -1267,7 +1267,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$ico
 ;
 const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, isShowPopup, setIsCopied, setIsShowPopup, setIsOpenModal })=>{
     const { dictionary } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$portal$2f$src$2f$context$2f$use$2d$dictionary$2d$context$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useDictionary"])();
-    const [verificationCode, setVerificationCode] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
+    const [verificationCode, setVerificationCode] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const maxLength = 10000;
     const changeModeHandler = ()=>{
@@ -1294,30 +1294,33 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                 setIsCopied(false);
             }, 2000);
         }).catch((err)=>{
-            console.error("Failed to copy text: ", err);
+            console.error('Failed to copy text: ', err);
         });
     };
     const onSendHandler = async ()=>{
         setLoading(true);
         setIsOpenModal(true);
-        const code = generateRandomCode();
+        const res = await fetch('/api/v1/request', {
+            method: 'POST',
+            body: JSON.stringify({
+                type: 'TEXT',
+                content: textValue
+            })
+        });
+        setLoading(false);
+        if (!res.ok) {
+            console.log(res);
+            // set error here
+            setIsOpenModal(false);
+            return;
+        }
+        const payload = await res.json();
+        const code = payload.data;
         setVerificationCode(code);
         setTextState(3);
-        try {
-            // await createRequest();
-            console.log("Request created successfully!");
-        } catch (error) {
-            console.error("Error creating request:", error);
-        } finally{
-            setLoading(false);
-        }
-    };
-    //6 number
-    const generateRandomCode = ()=>{
-        return Math.floor(100000 + Math.random() * 900000).toString();
     };
     const isDisabled = ()=>{
-        return textValue === "";
+        return textValue === '';
     };
     if (textState === 1) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -1330,7 +1333,7 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                         children: dictionary.inputText
                     }, void 0, false, {
                         fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                        lineNumber: 106,
+                        lineNumber: 107,
                         columnNumber: 6
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1347,8 +1350,8 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                                 onChange: (e)=>setTextValue(e.target.value)
                             }, void 0, false, {
                                 fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                lineNumber: 110,
-                                columnNumber: 13
+                                lineNumber: 109,
+                                columnNumber: 7
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "flex items-center h-[24px] text-[#565B52]",
@@ -1359,13 +1362,13 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                lineNumber: 120,
+                                lineNumber: 119,
                                 columnNumber: 7
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                        lineNumber: 109,
+                        lineNumber: 108,
                         columnNumber: 6
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1375,18 +1378,18 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                         children: dictionary.submit
                     }, void 0, false, {
                         fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                        lineNumber: 125,
+                        lineNumber: 124,
                         columnNumber: 6
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                lineNumber: 105,
+                lineNumber: 106,
                 columnNumber: 5
             }, this)
         }, void 0, false, {
             fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-            lineNumber: 104,
+            lineNumber: 105,
             columnNumber: 4
         }, this);
     }
@@ -1401,12 +1404,12 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                         children: dictionary.loadingText
                     }, void 0, false, {
                         fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                        lineNumber: 141,
+                        lineNumber: 140,
                         columnNumber: 7
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                    lineNumber: 140,
+                    lineNumber: 139,
                     columnNumber: 6
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1434,7 +1437,7 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                                                     strokeLinejoin: "round"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                                    lineNumber: 157,
+                                                    lineNumber: 147,
                                                     columnNumber: 9
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1445,13 +1448,13 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                                                     strokeLinejoin: "round"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                                    lineNumber: 164,
+                                                    lineNumber: 148,
                                                     columnNumber: 9
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                            lineNumber: 150,
+                                            lineNumber: 146,
                                             columnNumber: 8
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1459,13 +1462,13 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                                             children: dictionary.back
                                         }, void 0, false, {
                                             fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                            lineNumber: 172,
+                                            lineNumber: 150,
                                             columnNumber: 8
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                    lineNumber: 146,
+                                    lineNumber: 145,
                                     columnNumber: 7
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1474,18 +1477,18 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                                         children: dictionary.backNote
                                     }, void 0, false, {
                                         fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                        lineNumber: 178,
+                                        lineNumber: 154,
                                         columnNumber: 8
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                    lineNumber: 177,
+                                    lineNumber: 153,
                                     columnNumber: 7
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                            lineNumber: 145,
+                            lineNumber: 144,
                             columnNumber: 6
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1494,19 +1497,19 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                                 children: textValue
                             }, void 0, false, {
                                 fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                lineNumber: 185,
+                                lineNumber: 159,
                                 columnNumber: 7
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                            lineNumber: 184,
+                            lineNumber: 158,
                             columnNumber: 6
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "flex justify-end text-[#1B1D1B] font-semibold text-sm underline",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: ()=>{
-                                    setTextValue("");
+                                    setTextValue('');
                                     setTextState(1);
                                 },
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1514,17 +1517,17 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                                     children: dictionary.clearAll
                                 }, void 0, false, {
                                     fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                    lineNumber: 195,
-                                    columnNumber: 15
+                                    lineNumber: 169,
+                                    columnNumber: 8
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                lineNumber: 189,
+                                lineNumber: 163,
                                 columnNumber: 7
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                            lineNumber: 188,
+                            lineNumber: 162,
                             columnNumber: 6
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1548,7 +1551,7 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                                                     fill: "#E5E7EB"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                                    lineNumber: 219,
+                                                    lineNumber: 188,
                                                     columnNumber: 11
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1556,38 +1559,38 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                                                     fill: "currentColor"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                                    lineNumber: 223,
+                                                    lineNumber: 192,
                                                     columnNumber: 11
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                            lineNumber: 211,
+                                            lineNumber: 180,
                                             columnNumber: 10
                                         }, this),
                                         dictionary.loading
                                     ]
-                                }, void 0, true) : "Send"
+                                }, void 0, true) : 'Send'
                             }, void 0, false, {
                                 fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                lineNumber: 205,
+                                lineNumber: 177,
                                 columnNumber: 7
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                            lineNumber: 201,
+                            lineNumber: 173,
                             columnNumber: 6
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                    lineNumber: 144,
+                    lineNumber: 143,
                     columnNumber: 5
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-            lineNumber: 138,
+            lineNumber: 137,
             columnNumber: 4
         }, this);
     }
@@ -1606,7 +1609,7 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "cursor-pointer",
                                         onClick: ()=>{
-                                            setTextValue("");
+                                            setTextValue('');
                                             setTextState(1);
                                         },
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -1625,7 +1628,7 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                                                     strokeLinecap: "round"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                                    lineNumber: 261,
+                                                    lineNumber: 230,
                                                     columnNumber: 10
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1636,18 +1639,18 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                                                     strokeLinecap: "round"
                                                 }, void 0, false, {
                                                     fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                                    lineNumber: 268,
+                                                    lineNumber: 231,
                                                     columnNumber: 10
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                            lineNumber: 253,
+                                            lineNumber: 222,
                                             columnNumber: 9
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                        lineNumber: 246,
+                                        lineNumber: 215,
                                         columnNumber: 8
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -1655,13 +1658,13 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                                         children: dictionary.waiting
                                     }, void 0, false, {
                                         fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                        lineNumber: 278,
+                                        lineNumber: 235,
                                         columnNumber: 8
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                lineNumber: 245,
+                                lineNumber: 214,
                                 columnNumber: 7
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1669,28 +1672,28 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                                 children: dictionary.waitingNote
                             }, void 0, false, {
                                 fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                lineNumber: 282,
+                                lineNumber: 237,
                                 columnNumber: 7
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                        lineNumber: 244,
+                        lineNumber: 213,
                         columnNumber: 6
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex justify-center items-center gap-1 self-stretch",
-                        children: verificationCode.split("").map((digit, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        children: verificationCode.split('').map((digit, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: " flex flex-col flex-1 p-2 justify-center items-center bg-[#F0F0EF] rounded-[4px] font-bold text-[#262824] text-[18px] leading-7",
                                 children: digit
                             }, index, false, {
                                 fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                lineNumber: 288,
+                                lineNumber: 241,
                                 columnNumber: 8
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                        lineNumber: 286,
+                        lineNumber: 239,
                         columnNumber: 6
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1700,17 +1703,17 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                             className: "text-[#1B1D1B] font-semibold text-[16px] leading-6",
                             children: isCopied ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaCheck"], {}, void 0, false, {
                                 fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                                lineNumber: 301,
-                                columnNumber: 20
-                            }, this) : "Copy"
+                                lineNumber: 253,
+                                columnNumber: 90
+                            }, this) : 'Copy'
                         }, void 0, false, {
                             fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                            lineNumber: 300,
+                            lineNumber: 253,
                             columnNumber: 7
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                        lineNumber: 296,
+                        lineNumber: 249,
                         columnNumber: 6
                     }, this),
                     isShowPopup && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1718,18 +1721,18 @@ const SendText = ({ textValue, textState, setTextState, setTextValue, isCopied, 
                         children: dictionary.popUpTime
                     }, void 0, false, {
                         fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                        lineNumber: 306,
+                        lineNumber: 257,
                         columnNumber: 7
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-                lineNumber: 243,
+                lineNumber: 212,
                 columnNumber: 5
             }, this)
         }, void 0, false, {
             fileName: "[project]/apps/portal/src/components/send-text/index.tsx",
-            lineNumber: 242,
+            lineNumber: 211,
             columnNumber: 4
         }, this);
     }

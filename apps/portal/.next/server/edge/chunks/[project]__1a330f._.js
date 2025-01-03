@@ -10143,7 +10143,10 @@ function getLocalePrefix(locale, localePrefix) {
     var _localePrefix$prefixe;
     return localePrefix.mode !== 'never' && ((_localePrefix$prefixe = localePrefix.prefixes) === null || _localePrefix$prefixe === void 0 ? void 0 : _localePrefix$prefixe[locale]) || // We return a prefix even if `mode: 'never'`. It's up to the consumer
     // to decide to use it or not.
-    '/' + locale;
+    getLocaleAsPrefix(locale);
+}
+function getLocaleAsPrefix(locale) {
+    return '/' + locale;
 }
 function templateToRegex(template) {
     const regexPattern = template// Replace optional catchall ('[[...slug]]')
@@ -10193,6 +10196,7 @@ function comparePathnamePairs(a, b) {
 function getSortedPathnames(pathnames) {
     return pathnames.sort(comparePathnamePairs);
 }
+exports.getLocaleAsPrefix = getLocaleAsPrefix;
 exports.getLocalePrefix = getLocalePrefix;
 exports.getSortedPathnames = getSortedPathnames;
 exports.hasPathnamePrefixed = hasPathnamePrefixed;

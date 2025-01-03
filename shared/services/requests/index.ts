@@ -1,5 +1,4 @@
 import { RequestModal } from '@/shared/database/models/request';
-import { errorHandler } from '@/shared/decorations/error-handler';
 import { Encryption } from '@/shared/services/encryption';
 import { randomNumber } from '@/apps/portal/src/utils/number';
 
@@ -9,7 +8,7 @@ interface RequestDownloadResponse {
 }
 
 export class Requests {
-	@errorHandler
+	// @errorHandler
 	public async getRequest(code: string): Promise<RequestDownloadResponse | null> {
 		const requestModal = new RequestModal();
 
@@ -36,7 +35,6 @@ export class Requests {
 		};
 	}
 
-	@errorHandler
 	public async createRequest(content: string, type: 'TEXT' | 'FILE'): Promise<string> {
 		let code = randomNumber(6);
 

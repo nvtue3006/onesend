@@ -1,7 +1,6 @@
 import { DeleteObjectsCommand, GetObjectCommand, ListObjectsV2Command, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { ErrorVars } from '@/shared/error/error-vars';
-import { errorHandler } from '@/shared/decorations/error-handler';
 
 export class AwsStorage {
 	static instance: AwsStorage;
@@ -18,7 +17,7 @@ export class AwsStorage {
 		return AwsStorage.instance;
 	}
 
-	@errorHandler
+	// @errorHandler
 	public async requestDownloadPredUrl(code: string): Promise<string> {
 		if (!this.s3Client) {
 			throw new Error(ErrorVars.IN002_INSTANCE_NOT_CREATED + ` [s3Client]`);
@@ -38,7 +37,7 @@ export class AwsStorage {
 		return await getSignedUrl(this.s3Client, command, { expiresIn: 600 });
 	}
 
-	@errorHandler
+	// @errorHandler
 	public async requestUploadPredUrl(code: string): Promise<string> {
 		if (!this.s3Client) {
 			throw new Error(ErrorVars.IN002_INSTANCE_NOT_CREATED + ` [s3Client]`);
@@ -59,7 +58,7 @@ export class AwsStorage {
 		return await getSignedUrl(this.s3Client, command, { expiresIn: 600 });
 	}
 
-	@errorHandler
+	// @errorHandler
 	public async deleteResource(code: string) {
 		if (!this.s3Client) {
 			throw new Error(ErrorVars.IN002_INSTANCE_NOT_CREATED + ` [s3Client]`);
@@ -93,7 +92,7 @@ export class AwsStorage {
 		await this.s3Client.send(deleteCommand);
 	}
 
-	@errorHandler
+	// @errorHandler
 	private initAwsStorageClient(): S3Client {
 		if (!process.env.AWS_REGION || !process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY || !process.env.AWS_BUCKET_NAME) {
 			throw new Error(ErrorVars.IN001_ENV_MISSING);

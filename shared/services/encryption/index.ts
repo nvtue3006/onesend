@@ -1,4 +1,3 @@
-import { errorHandler } from '@/shared/decorations/error-handler';
 import { ErrorVars } from '@/shared/error/error-vars';
 import crypto from 'crypto';
 
@@ -15,7 +14,7 @@ export class Encryption {
 		return Encryption.instance;
 	}
 
-	@errorHandler
+	// @errorHandler
 	public async encrypt(text: string) {
 		if (!this.secret) {
 			throw new Error(ErrorVars.IN002_INSTANCE_NOT_CREATED + '[Encryption.secret]');
@@ -31,7 +30,7 @@ export class Encryption {
 		return `${iv.toString('hex')}:${encrypted}`;
 	}
 
-	@errorHandler
+	// @errorHandler
 	public async decrypt(text: string) {
 		if (!this.secret) {
 			throw new Error(ErrorVars.IN002_INSTANCE_NOT_CREATED + '[Encryption.secret]');
@@ -50,8 +49,8 @@ export class Encryption {
 
 		return decrypted;
 	}
-
-	@errorHandler
+	//
+	// @errorHandler
 	private initEncryptionSecretKey(): Buffer {
 		if (!process.env.SECRET_ENCRYPT_KEY) {
 			throw new Error(ErrorVars.IN001_ENV_MISSING + '[SECRET_ENCRYPT_KEY]');

@@ -44,19 +44,25 @@ var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_
 {
 __turbopack_esm__({
     "config": (()=>config),
-    "default": (()=>__TURBOPACK__default__export__)
+    "default": (()=>middleware)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$portal$2f$src$2f$locale$2e$ts__$5b$middleware$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/apps/portal/src/locale.ts [middleware] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$intl$2f$dist$2f$middleware$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next-intl/dist/middleware.js [middleware] (ecmascript)");
 ;
 ;
-const __TURBOPACK__default__export__ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$intl$2f$dist$2f$middleware$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["default"])({
-    defaultLocale: "en",
-    locales: __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$portal$2f$src$2f$locale$2e$ts__$5b$middleware$5d$__$28$ecmascript$29$__["locales"]
-});
+async function middleware(req) {
+    // const origin = req.headers.get('origin') || req.headers.get('referer');
+    // if (origin && !origin.startsWith(ALLOWED_ORIGIN)) {
+    // 	return new NextResponse('Forbidden: Invalid origin', { status: 403 });
+    // }
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$intl$2f$dist$2f$middleware$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["default"])({
+        defaultLocale: 'en',
+        locales: __TURBOPACK__imported__module__$5b$project$5d2f$apps$2f$portal$2f$src$2f$locale$2e$ts__$5b$middleware$5d$__$28$ecmascript$29$__["locales"]
+    })(req);
+}
 const config = {
     matcher: [
-        '/((?!_next|favicon.ico|.*\\.svg).*)'
+        '/((?!_next|favicon.ico|.env|.*\\.svg|api).*)'
     ]
 };
 }}),

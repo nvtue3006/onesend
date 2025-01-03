@@ -1,7 +1,7 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useState } from 'react';
 
-import { FaCheck } from "react-icons/fa";
-import {useDictionary} from "@/context/use-dictionary-context";
+import { FaCheck } from 'react-icons/fa';
+import { useDictionary } from '@/context/use-dictionary-context';
 
 interface ISendTextProps {
 	textValue: string;
@@ -16,19 +16,18 @@ interface ISendTextProps {
 }
 
 const SendText: React.FC<ISendTextProps> = ({
-												textValue,
-												textState,
-												setTextState,
-												setTextValue,
-												isCopied,
-												isShowPopup,
-												setIsCopied,
-												setIsShowPopup,
-												setIsOpenModal,
-											}) => {
-
+	textValue,
+	textState,
+	setTextState,
+	setTextValue,
+	isCopied,
+	isShowPopup,
+	setIsCopied,
+	setIsShowPopup,
+	setIsOpenModal,
+}) => {
 	const { dictionary } = useDictionary();
-	const [verificationCode, setVerificationCode] = useState("");
+	const [verificationCode, setVerificationCode] = useState('');
 	const [loading, setLoading] = useState(false);
 
 	const maxLength = 10000;
@@ -67,7 +66,7 @@ const SendText: React.FC<ISendTextProps> = ({
 				}, 2000);
 			})
 			.catch((err) => {
-				console.error("Failed to copy text: ", err);
+				console.error('Failed to copy text: ', err);
 			});
 	};
 
@@ -75,48 +74,48 @@ const SendText: React.FC<ISendTextProps> = ({
 		setLoading(true);
 		setIsOpenModal(true);
 
-		const code = generateRandomCode();
+		const res = await fetch('/api/v1/request', {
+			method: 'POST',
+			body: JSON.stringify({ type: 'TEXT', content: textValue }),
+		});
+
+		setLoading(false);
+
+		if (!res.ok) {
+			console.log(res);
+			// set error here
+			setIsOpenModal(false);
+			return;
+		}
+
+		const payload = await res.json();
+
+		const code = payload.data;
 
 		setVerificationCode(code);
 		setTextState(3);
-
-		try {
-			// await createRequest();
-			console.log("Request created successfully!");
-		} catch (error) {
-			console.error("Error creating request:", error);
-		} finally {
-			setLoading(false);
-		}
-	};
-
-	//6 number
-	const generateRandomCode = () => {
-		return Math.floor(100000 + Math.random() * 900000).toString();
 	};
 
 	const isDisabled = () => {
-		return textValue === "";
+		return textValue === '';
 	};
 
 	if (textState === 1) {
 		return (
 			<form onSubmit={handleSubmit}>
 				<div className="flex flex-col md:w-[360px] w-[343px] border-0.5 p-6 gap-5 rounded-[10px] border bg-white shadow-[0px_4px_12px_0px_rgba(56,58,54,0.08)] border-[#B7BAB5]">
-					<label className="text-[#1B1D1B] font-semibold text-[16px] leading-6">
-						{dictionary.inputText}
-					</label>
+					<label className="text-[#1B1D1B] font-semibold text-[16px] leading-6">{dictionary.inputText}</label>
 					<div className="flex flex-col gap-3">
-            <textarea
-				id="text"
-				name="textArea"
-				maxLength={maxLength}
-				value={textValue}
-				placeholder={dictionary.inputTextPlaceholder}
-				className="w-full h-[210px] resize-none flex flex-col bg-[#FAFAFA] rounded-[10px] pt-4 pr-6 pb-14 pl-4"
-				required={true}
-				onChange={(e) => setTextValue(e.target.value)}
-			/>
+						<textarea
+							id="text"
+							name="textArea"
+							maxLength={maxLength}
+							value={textValue}
+							placeholder={dictionary.inputTextPlaceholder}
+							className="w-full h-[210px] resize-none flex flex-col bg-[#FAFAFA] rounded-[10px] pt-4 pr-6 pb-14 pl-4"
+							required={true}
+							onChange={(e) => setTextValue(e.target.value)}
+						/>
 						<p className="flex items-center h-[24px] text-[#565B52]">
 							{textValue.length}/{maxLength}
 						</p>
@@ -143,41 +142,16 @@ const SendText: React.FC<ISendTextProps> = ({
 				)}
 				<div className="relative flex flex-col md:w-[360px] w-[343px] border-0.5 px-[16px] py-[24px] gap-6 rounded-[10px] border bg-white shadow-[0px_4px_12px_0px_rgba(56,58,54,0.08)] border-[#B7BAB5]">
 					<div className="flex flex-col gap-2 ">
-						<div
-							className="flex gap-[10px] cursor-pointer"
-							onClick={() => setTextState(1)}
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="none"
-							>
-								<path
-									d="M19 12H5"
-									stroke="black"
-									strokeWidth="2"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
-								<path
-									d="M12 19L5 12L12 5"
-									stroke="black"
-									strokeWidth="2"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
+						<div className="flex gap-[10px] cursor-pointer" onClick={() => setTextState(1)}>
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+								<path d="M19 12H5" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+								<path d="M12 19L5 12L12 5" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
 							</svg>
-							<div className="text-[#1B1D1B] font-semibold text-[16px] leading-6">
-								{dictionary.back}
-							</div>
+							<div className="text-[#1B1D1B] font-semibold text-[16px] leading-6">{dictionary.back}</div>
 						</div>
 
 						<div>
-							<p className="flex  font-normal text-[16px] text-[#565B52] leading-6">
-								{dictionary.backNote}
-							</p>
+							<p className="flex  font-normal text-[16px] text-[#565B52] leading-6">{dictionary.backNote}</p>
 						</div>
 					</div>
 
@@ -188,13 +162,11 @@ const SendText: React.FC<ISendTextProps> = ({
 					<div className="flex justify-end text-[#1B1D1B] font-semibold text-sm underline">
 						<button
 							onClick={() => {
-								setTextValue("");
+								setTextValue('');
 								setTextState(1);
 							}}
 						>
-              <span className="cursor-pointer hover:text-red-600">
-                {dictionary.clearAll}
-              </span>
+							<span className="cursor-pointer hover:text-red-600">{dictionary.clearAll}</span>
 						</button>
 					</div>
 
@@ -202,10 +174,7 @@ const SendText: React.FC<ISendTextProps> = ({
 						className="text-center bg-[#9EE86F] p-[10px] rounded-md cursor-pointer transition duration-300 hover:shadow-lg hover:border-2 hover:border-green-600"
 						onClick={!loading ? onSendHandler : () => {}}
 					>
-						<button
-							disabled={loading}
-							className="text-[#1B1D1B] font-semibold text-[16px] leading-6 "
-						>
+						<button disabled={loading} className="text-[#1B1D1B] font-semibold text-[16px] leading-6 ">
 							{loading ? (
 								<>
 									<svg
@@ -228,7 +197,7 @@ const SendText: React.FC<ISendTextProps> = ({
 									{dictionary.loading}
 								</>
 							) : (
-								"Send"
+								'Send'
 							)}
 						</button>
 					</div>
@@ -246,7 +215,7 @@ const SendText: React.FC<ISendTextProps> = ({
 							<div
 								className="cursor-pointer"
 								onClick={() => {
-									setTextValue("");
+									setTextValue('');
 									setTextState(1);
 								}}
 							>
@@ -258,33 +227,17 @@ const SendText: React.FC<ISendTextProps> = ({
 									xmlns="http://www.w3.org/2000/svg"
 									className="transition duration-300 hover:scale-125 "
 								>
-									<path
-										d="M19 12H5"
-										stroke="black"
-										strokeWidth="2"
-										strokeLinejoin="round"
-										strokeLinecap="round"
-									/>
-									<path
-										d="M12 19L5 12L12 5"
-										stroke="black"
-										strokeWidth="2"
-										strokeLinejoin="round"
-										strokeLinecap="round"
-									/>
+									<path d="M19 12H5" stroke="black" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+									<path d="M12 19L5 12L12 5" stroke="black" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
 								</svg>
 							</div>
 
-							<h1 className="text-[#1B1D1B] font-semibold text-[16px] leading-6">
-								{dictionary.waiting}
-							</h1>
+							<h1 className="text-[#1B1D1B] font-semibold text-[16px] leading-6">{dictionary.waiting}</h1>
 						</div>
-						<p className="text-[#565B52] font-normal text-[16px] leading-6">
-							{dictionary.waitingNote}
-						</p>
+						<p className="text-[#565B52] font-normal text-[16px] leading-6">{dictionary.waitingNote}</p>
 					</div>
 					<div className="flex justify-center items-center gap-1 self-stretch">
-						{verificationCode.split("").map((digit, index) => (
+						{verificationCode.split('').map((digit, index) => (
 							<div
 								key={index}
 								className=" flex flex-col flex-1 p-2 justify-center items-center bg-[#F0F0EF] rounded-[4px] font-bold text-[#262824] text-[18px] leading-7"
@@ -297,9 +250,7 @@ const SendText: React.FC<ISendTextProps> = ({
 						className="text-center bg-[#9EE86F] p-[10px] rounded-md cursor-pointer transition duration-300 hover:shadow-lg hover:border-2 hover:border-green-600"
 						onClick={handleCopyText}
 					>
-						<button className="text-[#1B1D1B] font-semibold text-[16px] leading-6">
-							{isCopied ? <FaCheck /> : "Copy"}
-						</button>
+						<button className="text-[#1B1D1B] font-semibold text-[16px] leading-6">{isCopied ? <FaCheck /> : 'Copy'}</button>
 					</div>
 
 					{isShowPopup && (
