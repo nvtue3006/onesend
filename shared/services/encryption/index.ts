@@ -57,11 +57,13 @@ export class Encryption {
 			throw new Error(ErrorVars.IN001_ENV_MISSING + '[SECRET_ENCRYPT_KEY]');
 		}
 
-		return Buffer.isBuffer(process.env.SECRET_ENCRYPT_KEY)
-			? process.env.SECRET_ENCRYPT_KEY
-			: crypto
-					.createHash('sha256')
-					.update(process.env.SECRET_ENCRYPT_KEY || '')
-					.digest();
+		if (Buffer.isBuffer(process.env.SECRET_ENCRYPT_KEY)) {
+			return process.env.SECRET_ENCRYPT_KEY;
+		}
+
+		return crypto
+			.createHash('sha256')
+			.update(process.env.SECRET_ENCRYPT_KEY || '')
+			.digest();
 	}
 }

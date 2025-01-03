@@ -20,8 +20,8 @@
   },
   "packageManager": "npm@9.8.0",
   "dependencies": {
+    "express-rate-limit": "^7.5.0",
     "mongoose": "^8.8.2",
-    "next-intl": "^3.25.1"
-
+    "next-intl": "^3.26.3"
   }
 }
