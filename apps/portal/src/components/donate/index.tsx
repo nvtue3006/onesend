@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import {useDictionary} from "@/context/use-dictionary-context";
 import Image from "next/image";
-import momoImage from "../../../public/images/momo.png";
+import moMoImage from "../../../public/images/momo.png";
 
 interface IDonateProps {
 	isOpenModal: boolean;
@@ -12,7 +12,7 @@ interface IDonateProps {
 const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 	const { dictionary } = useDictionary();
 	const [isCopyBank, setIsCopyBank] = useState(false);
-	const accountNumber = '595749999';
+	const accountNumber = '8889999574';
 
 	const openModal = () => {
 		setIsOpenModal(!isOpenModal);
@@ -1227,7 +1227,7 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 									<div className="md:hidden flex flex-col justify-center gap-[10px]">
 										<div className="flex items-center gap-1 ">
 											<li></li>
-											<Image className="w-[48px] h-auto rounded" src={momoImage} alt="momo"/>
+											<Image className="w-[48px] h-auto rounded" src={moMoImage} alt="momo"/>
 											<a
 												href="https://me.momo.vn/m8IbTzsdfzfJfAsdCNsaCj"
 												target="_blank"
@@ -1249,7 +1249,7 @@ const Donate: React.FC<IDonateProps> = ({ isOpenModal, setIsOpenModal }) => {
 												<div
 													className="flex w-[250px] flex-col px-[12px] py-[10px] gap-[6px] bg-[#FAFAFA] rounded">
 													<div>MB Bank</div>
-													<div>Cassavas</div>
+													<div>Nguyen Van Tue</div>
 													<div
 														className="flex justify-between items-center cursor-pointer"
 														onClick={handleCopy}

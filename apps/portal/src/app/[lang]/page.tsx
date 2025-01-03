@@ -55,13 +55,13 @@ export default function Home() {
 
 	return (
 		<div className="w-full h-full relative flex flex-col items-center justify-center m-auto">
-			<div className="absolute md:top-5 md:right-24 top-10 right-5">
+			<div className="absolute md:top-5 md:right-24 top-0 right-5">
 				<a href="https://github.com/nvtue3006/onesend" target="_blank" rel="noopener noreferrer">
 					<Image className="w-14 h-14 cursor-pointer" src={gitHubImage} alt="onsend github icon resource" />
 				</a>
 			</div>
 
-			<div className="w-full h-auto max-w-[360px] flex flex-col justify-center items-center gap-5 mt-16 ">
+			<div className="w-full h-auto max-w-[360px] flex flex-col justify-center items-center gap-5 mt-1 ">
 					<ChangeLocaleOption />
 
 				<div className="flex justify-between items-center md:w-[302px] md:p-[6px] p-1 rounded-[30px] border bg-[#F0F0EF] border-[#F0F0EF]">

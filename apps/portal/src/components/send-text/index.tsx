@@ -1,5 +1,5 @@
 import React, { FormEvent, useState } from "react";
-// import { createRequest } from "@/app/actions/create-request";
+
 import { FaCheck } from "react-icons/fa";
 import {useDictionary} from "@/context/use-dictionary-context";
 
@@ -81,7 +81,7 @@ const SendText: React.FC<ISendTextProps> = ({
 		setTextState(3);
 
 		try {
-			// await createRequest(textValue, code);
+			// await createRequest();
 			console.log("Request created successfully!");
 		} catch (error) {
 			console.error("Error creating request:", error);
